@@ -31,7 +31,19 @@ const CertificateCard: React.FC<{
                             alt={cert.name} 
                             className="relative w-full h-full object-contain z-10 transition-transform duration-700 group-hover:scale-105 p-4"
                             loading="lazy"
+                            onError={(e) => {
+                                // Hide broken image and show fallback
+                                e.currentTarget.style.display = 'none';
+                                const fallback = e.currentTarget.nextElementSibling as HTMLElement;
+                                if (fallback) fallback.style.display = 'flex';
+                            }}
                         />
+                        {/* Fallback for broken images */}
+                        <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-blue-500/10 to-purple-500/10 text-center p-4" style={{ display: 'none' }}>
+                            <Award className="w-12 h-12 text-blue-500/60 mb-3" />
+                            <p className="text-xs text-[var(--text-secondary)] font-medium">Certificate Image</p>
+                            <p className="text-[10px] text-[var(--text-tertiary)] mt-1">Click to view details</p>
+                        </div>
                     </>
                 ) : (
                     <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-500/5 to-purple-500/5">

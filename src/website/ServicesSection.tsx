@@ -57,7 +57,7 @@ const ServicesSection: React.FC = () => {
 
   return (
     <Section id="services" title={t('services_title')}>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
         {data.services.map((service, index) => {
           const Icon = serviceIcons[index % serviceIcons.length];
           return (

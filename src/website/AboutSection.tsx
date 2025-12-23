@@ -91,7 +91,7 @@ const AboutSection: React.FC = () => {
         <div className="lg:col-span-7 space-y-8 md:space-y-12">
           
           {/* Bio Card */}
-          <div className="glass-card p-6 md:p-8 relative overflow-hidden group border-l-4 border-l-blue-500 hover:border-l-cyan-500 transition-colors duration-500 reveal-slide-up rtl:border-l-0 rtl:border-r-4 rtl:hover:border-r-cyan-500">
+          <div className="glass-card p-6 md:p-8 relative overflow-hidden group transition-colors duration-500 reveal-slide-up">
             <h3 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 flex items-center gap-3 text-[var(--text-primary)] reveal-blur">
                 {t('bio_title')}
             </h3>
@@ -117,7 +117,6 @@ const AboutSection: React.FC = () => {
           {/* Experience Timeline */}
           <div id="experience" className="relative reveal-slide-up">
                 <h3 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 flex items-center gap-3 text-[var(--text-primary)] reveal-blur">
-                    <span className="w-1 h-6 md:h-8 bg-cyan-500 rounded-full shadow-[0_0_10px_rgba(6,182,212,0.5)]"></span>
                     {t('exp_title')}
                 </h3>
                 

@@ -7,6 +7,14 @@ import {
 } from 'lucide-react';
 import type { Project, Service, Experience, Certificate } from './types';
 
+// Import certificate images
+import certExperience from './assets/certificates/Certificate of Experience.jpg';
+import certOpticalFiber from './assets/certificates/Optical Fiber Network Installation .jpg';
+import certTrainingStatement from './assets/certificates/Training Statement of Completion.jpg';
+import certNetworkingFundamentals from './assets/certificates/Networking Fundamentals-1.png';
+import certWindowsOS from './assets/certificates/Windows Operating System Fundamentals-page-001.jpg';
+import certServerAdmin from './assets/certificates/Cert54081214480-1.png';
+
 // --- SHARED CONSTANTS ---
 const COMMON_PROJECTS = [
   {
@@ -64,37 +72,37 @@ const COMMON_CERTIFICATES: Certificate[] = [
     name: 'Certificate of Experience',
     issuer: 'Research Institute of Ophthalmology',
     date: '2022',
-    url: 'https://media.licdn.com/dms/image/v2/D4D2DAQHVbpYnsHLAKg/profile-treasury-image-shrink_1280_1280/profile-treasury-image-shrink_1280_1280/0/1692808833825?e=1766001600&v=beta&t=Yz1f6B9JST9gtUWBt26vTP-S2XDi8IlRYv2bR26fq_U'
+    url: certExperience
   },
   {
     name: 'Optical Fiber Network Installation & Maintenance',
     issuer: 'NTI',
     date: '2021',
-    url: 'https://media.licdn.com/dms/image/v2/D4D2DAQGUmR-80uL9Pw/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1692809291186?e=1765929600&v=beta&t=XQvA77gptqz9wnY5m2ga31f2ImxeBboFO2HjlPBYM4U'
+    url: certOpticalFiber
   },
   {
     name: 'Training Statement of Completion',
     issuer: 'NTI',
     date: '2021',
-    url: 'https://media.licdn.com/dms/image/v2/D4D2DAQFEUwr1LWBv7A/profile-treasury-image-shrink_1280_1280/B4DZsJqHpHKsAQ-/0/1765393597448?e=1766001600&v=beta&t=Ci3cZY8JdUhhrYUNFWOQiMJY1GkfVyZ98XvuP8WE7jE'
+    url: certTrainingStatement
   },
   {
     name: 'MTA: Networking Fundamentals',
     issuer: 'Microsoft',
     date: '2021',
-    url: 'https://media.licdn.com/dms/image/v2/D4D2DAQHQLl-vIfs2-w/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1692809221366?e=1765929600&v=beta&t=G8oWkUHI6ixg1I6Vmfvf326MzvO4EESGCY3wXVTxwVY'
+    url: certNetworkingFundamentals
   },
   {
     name: 'MTA: Windows Operating System Fundamentals',
     issuer: 'Microsoft',
     date: '2020',
-    url: 'https://media.licdn.com/dms/image/v2/D4D2DAQETvSnM7V3pfg/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1692809181747?e=1765929600&v=beta&t=WAWFbqaFWOEyvr5IyAbWXwkd8sgTCzfKrBybA2elgq0'
+    url: certWindowsOS
   },
   {
     name: 'MTA: Server Administration Fundamentals',
     issuer: 'Microsoft',
     date: '2022',
-    url: 'https://media.licdn.com/dms/image/v2/D4D2DAQEkdbx8HX23uA/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1692809107366?e=1765929600&v=beta&t=zAW9VSECOu63JHVZf3cb1TMhipoEAZ-O8QFvm-Xv5hM'
+    url: certServerAdmin
   }
 ];
 
@@ -159,11 +167,6 @@ export const DATA_BY_LANG = {
         title: 'Premium WordPress Sites',
         description: 'Expert creation of custom, high-performance WordPress websites. From Corporate Portfolios to E-commerce, tailored to your brand identity.',
         icon: Layout
-      },
-      {
-        title: 'IT & Cloud Architecture',
-        description: 'Leveraging deep IT management experience to consult on server infrastructure, security protocols, and cloud deployment strategies.',
-        icon: ServerCog
       },
     ],
     experiences: [
@@ -251,11 +254,6 @@ export const DATA_BY_LANG = {
         description: 'تصميم وتطوير مواقع WordPress مخصصة عالية الأداء. من المواقع التعريفية للشركات إلى منصات التجارة الإلكترونية، نصمم حلولاً تعكس هوية علامتك التجارية بدقة.',
         icon: Layout
       },
-      {
-        title: 'هندسة البنية التحتية والسحابة',
-        description: 'توظيف الخبرة العميقة في إدارة تكنولوجيا المعلومات لتقديم استشارات حول البنية التحتية للخوادم، بروتوكولات الأمان، واستراتيجيات النشر السحابي (Cloud Deployment).',
-        icon: ServerCog
-      },
     ],
     experiences: [
       {
@@ -342,11 +340,6 @@ export const DATA_BY_LANG = {
         description: 'Creazione esperta di siti web WordPress personalizzati ad alte prestazioni. Dai portfolio aziendali all\'E-commerce, su misura per la tua brand identity.',
         icon: Layout
       },
-      {
-        title: 'Architettura IT & Cloud',
-        description: 'Sfruttare una profonda esperienza di gestione IT per consulenze su infrastrutture server, protocolli di sicurezza e strategie di distribuzione cloud.',
-        icon: ServerCog
-      },
     ],
     experiences: [
       {
@@ -432,11 +425,6 @@ export const DATA_BY_LANG = {
         title: 'Sites WordPress Premium',
         description: 'Création experte de sites web WordPress personnalisés et performants.',
         icon: Layout
-      },
-      {
-        title: 'Architecture IT & Cloud',
-        description: 'Tirer parti d\'une profonde expérience de gestion informatique pour consulter sur l\'infrastructure serveur.',
-        icon: ServerCog
       },
     ],
     experiences: [
