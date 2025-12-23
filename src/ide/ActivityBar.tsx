@@ -5,6 +5,7 @@ import {
   UserCircle2, Settings,
 } from 'lucide-react';
 import { View } from '../constants';
+import profileImg from '../assets/profile.png';
 
 interface ActivityBarProps {
   activeView: View;
@@ -84,7 +85,7 @@ const ActivityBar: React.FC<ActivityBarProps> = ({ activeView, setActiveView }) 
           <div className="absolute bottom-20 left-14 w-60 bg-[var(--bg-ide-panel)] border border-[var(--border-color)] rounded-md shadow-lg text-sm z-10 text-[var(--text-primary)] animate-in fade-in zoom-in-95 duration-100 origin-bottom-left">
             <div className="p-3 border-b border-[var(--border-color)] flex items-center gap-3">
                <img 
-                  src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=100&q=80" 
+                  src={profileImg} 
                   alt="Profile" 
                   className="w-8 h-8 rounded-full object-cover border border-[var(--border-color)]"
                 />

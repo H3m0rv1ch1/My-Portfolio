@@ -133,7 +133,7 @@ export const DATA_BY_LANG = {
   en: {
     personalInfo: {
       name: 'Mohammed Alghanam',
-      title: 'Full Stack Engineer | Digital Architect | IT Strategist',
+      title: 'Full Stack Engineer | Digital Architect',
       bio: "I am a digital architect bridging the gap between creative design and technical engineering. With a strong foundation in IT infrastructure, I build robust, secure, and visually stunning digital solutions. My portfolio spans from immersive WordPress experiences for luxury brands like Noor Group to complex, data-driven ERP systems for enterprise resource planning. I don't just write code; I design systems that solve business problems with elegance and efficiency.",
     },
     projects: COMMON_PROJECTS.map((p, i) => ({
@@ -224,7 +224,7 @@ export const DATA_BY_LANG = {
   ar: {
     personalInfo: {
       name: 'محمد الغنام',
-      title: 'Full Stack Engineer | Digital Architect | IT Strategist',
+      title: 'Full Stack Engineer | Digital Architect',
       bio: "مهندس برمجيات ومخطط استراتيجي للحلول الرقمية، أجمع بين الحس الفني في التصميم والصرامة الهندسية في التطوير. أمتلك خبرة واسعة في البنية التحتية لتكنولوجيا المعلومات (IT Infrastructure)، مما يمكنني من بناء أنظمة رقمية ليست فقط جذابة بصرياً، بل آمنة، سريعة، وقابلة للتوسع. يمتد سجل أعمالي من تطوير تجارب ويب تفاعلية لعلامات تجارية مرموقة مثل 'مجموعة نور'، إلى هندسة أنظمة ERP معقدة تعتمد على البيانات لإدارة الموارد المؤسسية. أنا لا أكتب مجرد أكواد؛ بل أصمم أنظمة ذكية تحل مشكلات الأعمال بكفاءة وأناقة.",
     },
     projects: COMMON_PROJECTS.map((p, i) => ({
@@ -315,7 +315,7 @@ export const DATA_BY_LANG = {
   it: {
     personalInfo: {
       name: 'Mohammed Alghanam',
-      title: 'Full Stack Engineer | Digital Architect | IT Strategist',
+      title: 'Full Stack Engineer | Digital Architect',
       bio: "Sono un architetto digitale che colma il divario tra design creativo e ingegneria tecnica. Con una solida base nell'infrastruttura IT, costruisco soluzioni digitali robuste, sicure e visivamente sbalorditive. Il mio portfolio spazia da esperienze immersive WordPress per marchi di lusso come Noor Group a complessi sistemi ERP basati sui dati per la pianificazione delle risorse aziendali.",
     },
     projects: COMMON_PROJECTS.map((p, i) => ({
@@ -406,7 +406,7 @@ export const DATA_BY_LANG = {
   fr: {
     personalInfo: {
       name: 'Mohammed Alghanam',
-      title: 'Ingénieur Full Stack | Architecte Numérique | Stratège IT',
+      title: 'Ingénieur Full Stack | Architecte Numérique',
       bio: "Je suis un architecte numérique comblant le fossé entre le design créatif et l'ingénierie technique. Avec une base solide en infrastructure informatique, je construis des solutions numériques robustes, sécurisées et visuellement époustouflantes.",
     },
     projects: COMMON_PROJECTS.map((p, i) => ({

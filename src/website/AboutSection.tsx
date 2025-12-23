@@ -3,6 +3,7 @@ import React from 'react';
 import Section from './Section';
 import { SKILLS, COMPETENCIES, LANGUAGES } from '../data';
 import { useLanguage } from '../LanguageContext';
+import profileImg from '../assets/profile.png';
 
 const AboutSection: React.FC = () => {
   const { t, data } = useLanguage();
@@ -18,8 +19,8 @@ const AboutSection: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-cyan-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none"></div>
                 <div className="relative rounded-xl overflow-hidden aspect-[4/5] bg-[var(--bg-secondary)]">
                     <img 
-                        src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80" 
-                        alt={data.personalInfo.name} 
+                        src={profileImg}
+                        alt={data.personalInfo.name}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
                     />
                     
