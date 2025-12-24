@@ -10,7 +10,7 @@
 
 ## 🚀 Live Portfolio
 
-**Visit:** [mohammed-alghanam.dev](https://mohammed-alghanam.dev)
+**Visit:** [mohammed-alghanam.dev](https://mohamedelghanam.pages.dev/)
 
 ## 👨‍💻 About Mohammed Alghanam
 
@@ -242,4 +242,4 @@ When using this portfolio as inspiration, please provide appropriate attribution
 
 *Transforming business ideas into scalable digital solutions through cutting-edge technology and architectural expertise.*
 
-**🎯 Targeting Fortune 500 Companies | 🌍 Global Remote Services | 🚀 Enterprise-Grade Solutions**
+** 🌍 Global Remote Services | 🚀 Enterprise-Grade Solutions**
