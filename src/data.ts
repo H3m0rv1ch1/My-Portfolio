@@ -8,12 +8,12 @@ import {
 import type { Project, Service, Experience, Certificate } from './types';
 
 // Import certificate images
-import certExperience from './assets/certificates/Certificate of Experience.jpg';
-import certOpticalFiber from './assets/certificates/Optical Fiber Network Installation .jpg';
-import certTrainingStatement from './assets/certificates/Training Statement of Completion.jpg';
-import certNetworkingFundamentals from './assets/certificates/Networking Fundamentals-1.png';
-import certWindowsOS from './assets/certificates/Windows Operating System Fundamentals-page-001.jpg';
-import certServerAdmin from './assets/certificates/Cert54081214480-1.png';
+import certExperience from './assets/Certificates/Certificate of Experience.jpg';
+import certOpticalFiber from './assets/Certificates/Optical Fiber Network Installation .jpg';
+import certTrainingStatement from './assets/Certificates/Training Statement of Completion.jpg';
+import certNetworkingFundamentals from './assets/Certificates/Networking Fundamentals-1.png';
+import certWindowsOS from './assets/Certificates/Windows Operating System Fundamentals-page-001.jpg';
+import certServerAdmin from './assets/Certificates/Cert54081214480-1.png';
 
 // --- SHARED CONSTANTS ---
 const COMMON_PROJECTS = [
