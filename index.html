@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Mohammed Alghanam — Full Stack Engineer | Digital Architect</title>
+  <meta name="description" content="Full Stack Engineer bridging creative design and technical engineering. Building robust, secure, and visually stunning digital solutions." />
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Mohammed Alghanam — Full Stack Engineer" />
+  <meta property="og:description" content="Digital Architect building robust, secure, and visually stunning digital solutions." />
+  <meta property="og:image" content="./og-image.png" />
+  
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mohammed Alghanam — Full Stack Engineer" />
+  <meta name="twitter:description" content="Digital Architect building robust, secure, and visually stunning digital solutions." />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:ital,wght@0,300;0,400;0,600;1,300&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:ital,wght@0,300;0,400;0,600;1,300&display=swap" />
+  
+  <script>
+    (function(){
+      var s = localStorage.getItem('theme');
+      document.documentElement.setAttribute('data-theme', s ? s : (window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light'));
+    }());
+  </script>
+  
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    
+    :root {
+      --bg: #0C0C0B;
+      --bg2: #141413;
+      --fg: #EDEDE8;
+      --muted: #93938F;
+      --border: rgba(237,237,232,0.09);
+      --border-hover: rgba(237,237,232,0.38);
+      --accent: #3b82f6;
+      --accent2: #60a5fa;
+      --radius: 14px;
+      --transition: 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    
+    [data-theme="light"] {
+      --bg: #F0EDE5;
+      --bg2: #E8E5DD;
+      --fg: #0C0C0B;
+      --muted: #5B5A57;
+      --border: rgba(12,12,11,0.1);
+      --border-hover: rgba(12,12,11,0.38);
+      --accent: #2563eb;
+      --accent2: #1d4ed8;
+    }
+    
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      overflow-x: hidden;
+      cursor: none;
+      transition: background var(--transition), color var(--transition);
+    }
+    
+    *, *::before, *::after { cursor: none !important; }
+    
+    @media (pointer: coarse) {
+      *, *::before, *::after { cursor: auto !important; }
+      body { cursor: auto; }
+      .cursor { display: none !important; }
+    }
+    
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.028;
+      pointer-events: none;
+      z-index: 9997;
+    }
+    
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      z-index: 9000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 20px;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    
+    #preloader.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    
+    .pl-name {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(32px, 6vw, 72px);
+      font-weight: 800;
+      letter-spacing: -0.045em;
+      overflow: hidden;
+      text-align: center;
+    }
+    
+    .pl-name span {
+      display: inline-block;
+      transform: translateY(110%);
+      animation: slideUp 0.8s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+    }
+    
+    .pl-bar-wrap {
+      width: 160px;
+      height: 1px;
+      background: var(--border);
+      overflow: hidden;
+    }
+    
+    .pl-bar {
+      height: 100%;
+      width: 0;
+      background: var(--fg);
+      animation: fillBar 1.2s cubic-bezier(0.76, 0, 0.24, 1) 0.3s forwards;
+    }
+    
+    @keyframes slideUp {
+      to { transform: translateY(0); }
+    }
+    
+    @keyframes fillBar {
+      to { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div id="preloader" aria-hidden="true">
+    <div class="pl-name"><span>Mohammed Alghanam</span></div>
+    <div class="pl-bar-wrap"><div class="pl-bar" id="plBar"></div></div>
+  </div>
+  
+  <div id="root"></div>
+  
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+</html>

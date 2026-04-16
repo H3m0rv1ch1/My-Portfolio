@@ -1,0 +1,2 @@
+# This file ensures the public folder is tracked by git even if empty
+# Place static assets (images, fonts, etc.) in this directory
