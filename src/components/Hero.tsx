@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 
 export default function Hero(): JSX.Element {
   const sectionRef = useRef<HTMLElement>(null);
+  const bgRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -31,10 +32,35 @@ export default function Hero(): JSX.Element {
         (el as HTMLElement).style.transform = 'translateY(0)';
       }, 600 + i * 100);
     });
+
+    // Parallax scroll effect for background
+    const bg = bgRef.current;
+    if (!bg) return;
+
+    const onScroll = (): void => {
+      const scrollY = window.scrollY;
+      const heroHeight = section.offsetHeight;
+      const progress = Math.min(scrollY / heroHeight, 1);
+      
+      // Move up slower than scroll (parallax)
+      const translateY = scrollY * 0.3;
+      // Slight rotation based on scroll
+      const rotate = progress * 5; // 0 to 5 degrees
+      // Scale down slightly as you scroll
+      const scale = 1 - progress * 0.1; // 1 to 0.9
+      
+      bg.style.transform = `translateY(${translateY}px) rotate(${rotate}deg) scale(${scale})`;
+      // Fade out as you scroll
+      bg.style.opacity = String(0.2 - progress * 0.2);
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   return (
     <section id="hero" ref={sectionRef}>
+      <div className="hero-bg" ref={bgRef}></div>
       <div className="hero-eyebrow hero-fade">
         <span>Full Stack Engineer & Digital Architect</span>
       </div>

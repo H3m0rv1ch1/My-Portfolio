@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { ArrowUpRight } from 'lucide-react';
 
 export default function Contact(): JSX.Element {
   const sectionRef = useRef<HTMLElement>(null);
@@ -48,7 +49,9 @@ export default function Contact(): JSX.Element {
 
       <div className="contact-headline contact-animate">
         <span className="tl"><span>
-          <a href="mailto:mohamed.atef.23@gmail.com">Let's work together</a>
+          <a href="mailto:mohamed.atef.23@gmail.com" className="hire-link">
+            Hire me <ArrowUpRight className="hire-arrow" strokeWidth={2.5} />
+          </a>
         </span></span>
       </div>
 

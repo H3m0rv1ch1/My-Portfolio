@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface Experience {
   company: string;
@@ -10,6 +10,9 @@ interface Award {
   title: string;
   issuer: string;
   year: string;
+  image: string;
+  previewWidth?: number;
+  previewHeight?: number;
 }
 
 const experience: Experience[] = [
@@ -21,12 +24,12 @@ const experience: Experience[] = [
 ];
 
 const awards: Award[] = [
-  { title: 'Microsoft MTA - Networking Fundamentals', issuer: 'Microsoft', year: '2019' },
-  { title: 'Microsoft MTA - Windows OS Fundamentals', issuer: 'Microsoft', year: '2019' },
-  { title: 'Microsoft MTA - Server Administration', issuer: 'Microsoft', year: '2020' },
-  { title: 'NTI - Web Development Certificate', issuer: 'NTI Egypt', year: '2021' },
-  { title: 'NTI - Network Security Certificate', issuer: 'NTI Egypt', year: '2021' },
-  { title: 'Full Stack Development Professional', issuer: 'Professional', year: '2024' }
+  { title: 'Microsoft MTA - Networking Fundamentals', issuer: 'Microsoft', year: '2019', image: '/certificates/Networking Fundamentals-1.png' },
+  { title: 'Microsoft MTA - Windows OS Fundamentals', issuer: 'Microsoft', year: '2019', image: '/certificates/Windows Operating System Fundamentals-page-001.jpg' },
+  { title: 'Microsoft MTA - Server Administration', issuer: 'Microsoft', year: '2020', image: '/certificates/Cert54081214480-1.png' },
+  { title: 'Optical Fiber Network Installation', issuer: 'NTI Egypt', year: '2021', image: '/certificates/Optical Fiber Network Installation .jpg' },
+  { title: 'Training Statement of Completion', issuer: 'NTI Egypt', year: '2021', image: '/certificates/Training Statement of Completion.jpg', previewWidth: 350, previewHeight: 503 },
+  { title: 'Certificate of Experience', issuer: 'Professional', year: '2024', image: '/certificates/Certificate of Experience.jpg', previewWidth: 400, previewHeight: 584 }
 ];
 
 const skills: string[] = [
@@ -37,6 +40,45 @@ const skills: string[] = [
 
 export default function About(): JSX.Element {
   const sectionRef = useRef<HTMLElement>(null);
+  const [hoveredCert, setHoveredCert] = useState<number | null>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [smoothPosition, setSmoothPosition] = useState({ x: 0, y: 0 });
+  const [isVisible, setIsVisible] = useState(false);
+  const animationRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    const lerp = (start: number, end: number, factor: number) => start + (end - start) * factor;
+
+    const animate = () => {
+      setSmoothPosition((prev) => ({
+        x: lerp(prev.x, mousePosition.x, 0.15),
+        y: lerp(prev.y, mousePosition.y, 0.15),
+      }));
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    animationRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [mousePosition]);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    setMousePosition({ x: e.clientX, y: e.clientY });
+  };
+
+  const handleMouseEnter = (index: number) => {
+    setHoveredCert(index);
+    setIsVisible(true);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredCert(null);
+    setIsVisible(false);
+  };
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -66,7 +108,34 @@ export default function About(): JSX.Element {
   }, []);
 
   return (
-    <section id="about" ref={sectionRef}>
+    <section id="about" ref={sectionRef} onMouseMove={handleMouseMove}>
+      {/* Certificate Preview Popup */}
+      <div
+        className="cert-preview"
+        style={{
+          transform: `translate3d(${smoothPosition.x + 20}px, ${smoothPosition.y - 150}px, 0)`,
+          opacity: isVisible ? 1 : 0,
+          scale: isVisible ? '1' : '0.8',
+          pointerEvents: 'none',
+          width: hoveredCert !== null ? (awards[hoveredCert].previewWidth ?? 320) : 320,
+          height: hoveredCert !== null ? (awards[hoveredCert].previewHeight ?? 220) : 220,
+        }}
+      >
+        <div className="cert-preview-inner">
+          {awards.map((award, index) => (
+            <img
+              key={award.title}
+              src={award.image}
+              alt={award.title}
+              className="cert-preview-img"
+              style={{
+                opacity: hoveredCert === index ? 1 : 0,
+                transform: hoveredCert === index ? 'scale(1)' : 'scale(1.1)',
+              }}
+            />
+          ))}
+        </div>
+      </div>
       <div className="s-header about-animate">
         <div>
           <p className="s-label">About</p>
@@ -113,8 +182,13 @@ export default function About(): JSX.Element {
           <div className="about-animate">
             <h3 className="detail-h">Certifications</h3>
             <div className="awards-list">
-              {awards.slice(0, 4).map((award) => (
-                <div key={award.title} className="award-item">
+              {awards.map((award, index) => (
+                <div
+                  key={award.title}
+                  className={`award-item ${hoveredCert === index ? 'hovered' : ''}`}
+                  onMouseEnter={() => handleMouseEnter(index)}
+                  onMouseLeave={handleMouseLeave}
+                >
                   <div className="aw-l">
                     <span className="aw-title">{award.title}</span>
                     <span className="aw-issuer">{award.issuer}</span>

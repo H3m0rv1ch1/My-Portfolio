@@ -7,7 +7,10 @@ export default function Navigation(): JSX.Element {
 
   return (
     <nav id="nav" className={scrolled ? 'scrolled' : ''}>
-      <a href="#hero" className="nav-logo">m-alghanam</a>
+      <a href="#hero" className="nav-logo">
+        <img src="/img.png" alt="mo-alghanam" />
+        <span>mo-alghanam</span>
+      </a>
       <div className="nav-right">
         <ul className="nav-links">
           <li><a href="#work">Work</a></li>

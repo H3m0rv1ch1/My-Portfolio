@@ -58,6 +58,8 @@ export default function CustomCursor(): JSX.Element | null {
       const isInteractive = target.closest('a, button, .pcard, .tag, .skill-pill, .nav-links a, .theme-btn, .pill');
       const isContactLink = target.closest('.contact-headline a');
       const isBackToTop = target.closest('.back-to-top');
+      const isNavLogo = target.closest('.nav-logo');
+      const isProjectCard = target.closest('a.pcard-vis');
       
       if (isInteractive) {
         document.body.classList.add('is-hovering');
@@ -67,6 +69,10 @@ export default function CustomCursor(): JSX.Element | null {
         setCursorText('Talk to me 👋');
       } else if (isBackToTop) {
         setCursorText('Go up 🚀');
+      } else if (isNavLogo) {
+        setCursorText('👋 Hi, this is me');
+      } else if (isProjectCard) {
+        setCursorText('View Project ↗');
       }
     };
 
@@ -75,12 +81,14 @@ export default function CustomCursor(): JSX.Element | null {
       const isInteractive = target.closest('a, button, .pcard, .tag, .skill-pill, .nav-links a, .theme-btn, .pill');
       const isContactLink = target.closest('.contact-headline a');
       const isBackToTop = target.closest('.back-to-top');
+      const isNavLogo = target.closest('.nav-logo');
+      const isProjectCard = target.closest('a.pcard-vis');
       
       if (isInteractive) {
         document.body.classList.remove('is-hovering');
       }
       
-      if (isContactLink || isBackToTop) {
+      if (isContactLink || isBackToTop || isNavLogo || isProjectCard) {
         setCursorText('Guest');
       }
     };
