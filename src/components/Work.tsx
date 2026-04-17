@@ -1,4 +1,5 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, memo } from 'react';
+import { HoverExpand } from './HoverExpand';
 
 interface Project {
   id: string;
@@ -10,6 +11,14 @@ interface Project {
   gradient: string;
   liveUrl: string;
   githubUrl: string;
+}
+
+interface HoverItem {
+  label: string;
+  sublabel: string;
+  description: string;
+  gradient: string;
+  liveUrl: string;
 }
 
 const projects: Project[] = [
@@ -54,7 +63,7 @@ const projects: Project[] = [
     tags: ['React', 'TypeScript', 'State Management'],
     description: 'Corporate task management with drag-and-drop.',
     gradient: 'p-todo',
-    liveUrl: 'https://x-to-do-corp.pages.dev/',
+    liveUrl: '#private',
     githubUrl: 'https://github.com/H3m0rv1ch1/x-to-do-corp'
   },
   {
@@ -136,7 +145,7 @@ const projects: Project[] = [
   }
 ];
 
-export default function Work(): JSX.Element {
+const Work = memo(function Work(): JSX.Element {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -166,6 +175,21 @@ export default function Work(): JSX.Element {
     return () => observer.disconnect();
   }, []);
 
+  const hoverItems: HoverItem[] = projects.map((p) => ({
+    label: p.name,
+    sublabel: p.year,
+    description: p.tags.slice(0, 3).join(' · '),
+    gradient: p.gradient,
+    liveUrl: p.liveUrl,
+  }));
+
+  const handleItemClick = (index: number): void => {
+    const item = hoverItems[index];
+    if (item.liveUrl && item.liveUrl !== '#private') {
+      window.open(item.liveUrl, '_blank', 'noopener,noreferrer');
+    }
+  };
+
   return (
     <section id="work" ref={sectionRef}>
       <div className="s-header">
@@ -176,52 +200,12 @@ export default function Work(): JSX.Element {
         <span className="s-count">11</span>
       </div>
 
-      <div className="projects">
-        {projects.map((project) => (
-          <div key={project.id} className={`pcard ${project.gradient}`}>
-            <div className="pcard-inner">
-              <div className="pcard-info">
-                <div className="pcard-top">
-                  <span className="pnum">{project.id}</span>
-                </div>
-                <div className="pcard-mid">
-                  <div>
-                    <p className="pcompany">{project.company}</p>
-                    <h3 className="pname">{project.name}</h3>
-                    <p className="pyear">{project.year}</p>
-                  </div>
-                  <div className="tags">
-                    {project.tags.map((tag) => (
-                      <span key={tag} className="tag">{tag}</span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              {project.liveUrl !== '#private' ? (
-                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="pcard-vis">
-                  <div className="pcard-bg"></div>
-                  <div className="pcard-img-overlay"></div>
-                  <div className="p-arrow">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                      <path d="M3 13L13 3M13 3H5M13 3V11" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div>
-                </a>
-              ) : (
-                <div className="pcard-vis">
-                  <div className="pcard-bg"></div>
-                  <div className="pcard-img-overlay"></div>
-                  <div className="p-arrow">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                      <path d="M3 13L13 3M13 3H5M13 3V11" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
+      <HoverExpand 
+        items={hoverItems} 
+        onItemClick={handleItemClick}
+      />
     </section>
   );
-}
+});
+
+export default Work;

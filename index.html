@@ -4,22 +4,193 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Mohammed Alghanam — Full Stack Engineer | Digital Architect</title>
-  <meta name="description" content="Full Stack Engineer bridging creative design and technical engineering. Building robust, secure, and visually stunning digital solutions." />
+  <meta name="description" content="Full Stack Engineer & Digital Architect specializing in React, Next.js, TypeScript, and modern web development. Building robust, secure, and visually stunning digital solutions for businesses worldwide." />
+  <meta name="keywords" content="Full Stack Engineer, Web Developer, React Developer, Next.js Developer, TypeScript, JavaScript, Frontend Developer, Backend Developer, Dubai Developer, UAE Developer, Portfolio, Mohammed Alghanam, Digital Architect, Software Engineer" />
+  <meta name="author" content="Mohammed Alghanam" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow" />
+  <meta name="theme-color" content="#0C0C0B" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#F0EDE5" media="(prefers-color-scheme: light)" />
   
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Mohammed Alghanam — Full Stack Engineer" />
-  <meta property="og:description" content="Digital Architect building robust, secure, and visually stunning digital solutions." />
-  <meta property="og:image" content="./og-image.png" />
+  <!-- Security Headers -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="X-Frame-Options" content="DENY" />
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), gyroscope=()" />
+  
+  <!-- Content Security Policy - Strict -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    font-src 'self' https://fonts.gstatic.com;
+    img-src 'self' data: https:;
+    connect-src 'self' https:;
+    media-src 'self';
+    object-src 'none';
+    frame-ancestors 'none';
+    base-uri 'self';
+    form-action 'self';
+    upgrade-insecure-requests;
+  " />
+  
+  <link rel="canonical" href="https://mohammedalghanam.com/" />
+  
+  <meta property="og:type" content="profile" />
+  <meta property="og:site_name" content="Mohammed Alghanam Portfolio" />
+  <meta property="og:url" content="https://mohammedalghanam.com/" />
+  <meta property="og:title" content="Mohammed Alghanam — Full Stack Engineer | Digital Architect" />
+  <meta property="og:description" content="Full Stack Engineer & Digital Architect specializing in React, Next.js, TypeScript, and modern web development. Building robust, secure, and visually stunning digital solutions." />
+  <meta property="og:image" content="https://mohammedalghanam.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_US" />
   
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Mohammed Alghanam — Full Stack Engineer" />
-  <meta name="twitter:description" content="Digital Architect building robust, secure, and visually stunning digital solutions." />
+  <meta name="twitter:site" content="@mohammedalghanam" />
+  <meta name="twitter:creator" content="@mohammedalghanam" />
+  <meta name="twitter:title" content="Mohammed Alghanam — Full Stack Engineer | Digital Architect" />
+  <meta name="twitter:description" content="Full Stack Engineer & Digital Architect specializing in React, Next.js, TypeScript, and modern web development." />
+  <meta name="twitter:image" content="https://mohammedalghanam.com/og-image.png" />
   
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="manifest" href="/manifest.json" />
+  
+  <!-- Performance: DNS prefetch and preconnect for external resources -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+  <!-- Preload critical fonts with display=swap for faster text rendering -->
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:ital,wght@0,300;0,400;0,600;1,300&display=swap" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:ital,wght@0,300;0,400;0,600;1,300&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:ital,wght@0,300;0,400;0,600;1,300&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:ital,wght@0,300;0,400;0,600;1,300&display=swap" /></noscript>
+  
+  <!-- Preload critical images for LCP improvement -->
+  <link rel="preload" as="image" href="/herobg.png" fetchpriority="high" />
+  <link rel="preload" as="image" href="/img.png" fetchpriority="high" />
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://mohammedalghanam.com/#person",
+        "name": "Mohammed Alghanam",
+        "givenName": "Mohammed",
+        "familyName": "Alghanam",
+        "jobTitle": "Full Stack Engineer",
+        "alternateName": "Digital Architect",
+        "description": "Full Stack Engineer & Digital Architect specializing in React, Next.js, TypeScript, and modern web development.",
+        "url": "https://mohammedalghanam.com/",
+        "image": "https://mohammedalghanam.com/img.png",
+        "sameAs": [
+          "https://github.com/H3m0rv1ch1",
+          "https://linkedin.com/in/mohammedalghanam"
+        ],
+        "knowsAbout": [
+          "React",
+          "Next.js",
+          "TypeScript",
+          "JavaScript",
+          "Web Development",
+          "Frontend Development",
+          "Backend Development",
+          "Node.js",
+          "Full Stack Engineering"
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Dubai",
+          "addressCountry": "United Arab Emirates"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://mohammedalghanam.com/#website",
+        "url": "https://mohammedalghanam.com/",
+        "name": "Mohammed Alghanam Portfolio",
+        "description": "Portfolio of Mohammed Alghanam - Full Stack Engineer & Digital Architect",
+        "publisher": {
+          "@id": "https://mohammedalghanam.com/#person"
+        },
+        "inLanguage": "en"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://mohammedalghanam.com/#webpage",
+        "url": "https://mohammedalghanam.com/",
+        "name": "Mohammed Alghanam — Full Stack Engineer | Digital Architect",
+        "description": "Full Stack Engineer & Digital Architect specializing in React, Next.js, TypeScript, and modern web development.",
+        "isPartOf": {
+          "@id": "https://mohammedalghanam.com/#website"
+        },
+        "about": {
+          "@id": "https://mohammedalghanam.com/#person"
+        },
+        "breadcrumb": {
+          "@id": "https://mohammedalghanam.com/#breadcrumb"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://mohammedalghanam.com/#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://mohammedalghanam.com/"
+          }
+        ]
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://mohammedalghanam.com/#service",
+        "name": "Mohammed Alghanam - Full Stack Engineering Services",
+        "description": "Custom web development, React applications, Next.js solutions, and full-stack engineering services.",
+        "provider": {
+          "@id": "https://mohammedalghanam.com/#person"
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "United Arab Emirates"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Web Development Services",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Frontend Development"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Backend Development"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Full Stack Solutions"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+  </script>
   
   <script>
     (function(){
@@ -148,6 +319,51 @@
   
   <div id="root"></div>
   
+  <!-- HTTPS Enforcement & Security Checks -->
+  <script>
+    // Enforce HTTPS in production
+    if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+      location.replace('https://' + location.hostname + location.pathname + location.search + location.hash);
+    }
+
+    // Security: Check for console tampering (basic detection)
+    (function() {
+      const originalLog = console.log;
+      const originalError = console.error;
+      let suspiciousActivity = 0;
+      
+      console.log = function(...args) {
+        if (args.some(arg => typeof arg === 'string' && arg.includes('password'))) {
+          suspiciousActivity++;
+          if (suspiciousActivity > 5) {
+            console.warn('Suspicious activity detected');
+          }
+        }
+        return originalLog.apply(console, args);
+      };
+      
+      // Prevent basic iframe embedding (clickjacking protection)
+      if (window.top !== window.self) {
+        window.top.location = window.self.location;
+      }
+    })();
+  </script>
+  
   <script type="module" src="/src/main.tsx"></script>
+  
+  <!-- Service Worker Registration for Performance -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then((registration) => {
+            console.log('SW registered: ', registration);
+          })
+          .catch((error) => {
+            console.log('SW registration failed: ', error);
+          });
+      });
+    }
+  </script>
 </body>
 </html>

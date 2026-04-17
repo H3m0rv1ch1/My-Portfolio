@@ -1,0 +1,28 @@
+{
+  "name": "Mohammed Alghanam - Full Stack Engineer Portfolio",
+  "short_name": "Mohammed Alghanam",
+  "description": "Full Stack Engineer & Digital Architect specializing in React, Next.js, TypeScript, and modern web development.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0C0C0B",
+  "theme_color": "#0C0C0B",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "categories": ["portfolio", "developer", "technology"],
+  "screenshots": [
+    {
+      "src": "/og-image.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ]
+}

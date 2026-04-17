@@ -55,11 +55,11 @@ export default function CustomCursor(): JSX.Element | null {
     // Hover detection for interactive elements
     const onMouseOver = (e: MouseEvent): void => {
       const target = e.target as HTMLElement;
-      const isInteractive = target.closest('a, button, .pcard, .tag, .skill-pill, .nav-links a, .theme-btn, .pill');
+      const isInteractive = target.closest('a, button, .pcard, .tag, .skill-pill, .nav-links a, .theme-btn, .pill, .he-row');
       const isContactLink = target.closest('.contact-headline a');
       const isBackToTop = target.closest('.back-to-top');
       const isNavLogo = target.closest('.nav-logo');
-      const isProjectCard = target.closest('a.pcard-vis');
+      const isProjectCard = target.closest('.he-row');
       
       if (isInteractive) {
         document.body.classList.add('is-hovering');
@@ -73,6 +73,8 @@ export default function CustomCursor(): JSX.Element | null {
         setCursorText('👋 Hi, this is me');
       } else if (isProjectCard) {
         setCursorText('View Project ↗');
+      } else if (isInteractive) {
+        setCursorText('Link ↗');
       }
     };
 
@@ -82,13 +84,13 @@ export default function CustomCursor(): JSX.Element | null {
       const isContactLink = target.closest('.contact-headline a');
       const isBackToTop = target.closest('.back-to-top');
       const isNavLogo = target.closest('.nav-logo');
-      const isProjectCard = target.closest('a.pcard-vis');
+      const isProjectCard = target.closest('.he-row');
       
       if (isInteractive) {
         document.body.classList.remove('is-hovering');
       }
       
-      if (isContactLink || isBackToTop || isNavLogo || isProjectCard) {
+      if (isContactLink || isBackToTop || isNavLogo || isProjectCard || isInteractive) {
         setCursorText('Guest');
       }
     };

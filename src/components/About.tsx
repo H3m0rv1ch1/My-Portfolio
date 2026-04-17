@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, memo, useCallback } from 'react';
 
 interface Experience {
   company: string;
@@ -38,6 +38,35 @@ const skills: string[] = [
   'Network Security', 'Windows Server', 'UI/UX Design', 'System Architecture'
 ];
 
+// Memoized component to prevent unnecessary re-renders
+const MemoizedAwardItem = memo(function AwardItem({ 
+  award, 
+  index, 
+  isHovered, 
+  onEnter, 
+  onLeave 
+}: { 
+  award: Award; 
+  index: number; 
+  isHovered: boolean;
+  onEnter: (i: number) => void;
+  onLeave: () => void;
+}) {
+  return (
+    <div
+      className={`award-item ${isHovered ? 'hovered' : ''}`}
+      onMouseEnter={() => onEnter(index)}
+      onMouseLeave={onLeave}
+    >
+      <div className="aw-l">
+        <span className="aw-title">{award.title}</span>
+        <span className="aw-issuer">{award.issuer}</span>
+      </div>
+      <span className="aw-yr">{award.year}</span>
+    </div>
+  );
+});
+
 export default function About(): JSX.Element {
   const sectionRef = useRef<HTMLElement>(null);
   const [hoveredCert, setHoveredCert] = useState<number | null>(null);
@@ -66,19 +95,20 @@ export default function About(): JSX.Element {
     };
   }, [mousePosition]);
 
-  const handleMouseMove = (e: React.MouseEvent) => {
+  // Memoized handlers to prevent unnecessary re-renders
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
     setMousePosition({ x: e.clientX, y: e.clientY });
-  };
+  }, []);
 
-  const handleMouseEnter = (index: number) => {
+  const handleMouseEnter = useCallback((index: number) => {
     setHoveredCert(index);
     setIsVisible(true);
-  };
+  }, []);
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = useCallback(() => {
     setHoveredCert(null);
     setIsVisible(false);
-  };
+  }, []);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -183,18 +213,14 @@ export default function About(): JSX.Element {
             <h3 className="detail-h">Certifications</h3>
             <div className="awards-list">
               {awards.map((award, index) => (
-                <div
+                <MemoizedAwardItem
                   key={award.title}
-                  className={`award-item ${hoveredCert === index ? 'hovered' : ''}`}
-                  onMouseEnter={() => handleMouseEnter(index)}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <div className="aw-l">
-                    <span className="aw-title">{award.title}</span>
-                    <span className="aw-issuer">{award.issuer}</span>
-                  </div>
-                  <span className="aw-yr">{award.year}</span>
-                </div>
+                  award={award}
+                  index={index}
+                  isHovered={hoveredCert === index}
+                  onEnter={handleMouseEnter}
+                  onLeave={handleMouseLeave}
+                />
               ))}
             </div>
           </div>

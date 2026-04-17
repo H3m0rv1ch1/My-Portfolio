@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 
+// Theme is safe to store - no sensitive data
 type Theme = 'dark' | 'light';
 
 interface UseThemeReturn {
@@ -7,16 +8,28 @@ interface UseThemeReturn {
   toggleTheme: () => void;
 }
 
+const STORAGE_KEY = 'portfolio_theme';
+
 export function useTheme(): UseThemeReturn {
   const [theme, setTheme] = useState<Theme>(() => {
-    const saved = localStorage.getItem('theme') as Theme | null;
-    if (saved) return saved;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY) as Theme | null;
+      if (saved && (saved === 'dark' || saved === 'light')) {
+        return saved;
+      }
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    } catch {
+      return 'dark';
+    }
   });
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
+    try {
+      localStorage.setItem(STORAGE_KEY, theme);
+    } catch (error) {
+      console.warn('Theme storage failed:', error);
+    }
   }, [theme]);
 
   const toggleTheme = (): void => {

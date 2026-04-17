@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, memo } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 
-export default function Contact(): JSX.Element {
+const Contact = memo(function Contact(): JSX.Element {
   const sectionRef = useRef<HTMLElement>(null);
   const [copied, setCopied] = useState<boolean>(false);
 
@@ -91,4 +91,6 @@ export default function Contact(): JSX.Element {
       </div>
     </section>
   );
-}
+});
+
+export default Contact;
