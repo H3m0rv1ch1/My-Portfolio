@@ -4,7 +4,7 @@
 
 ### Full Stack Engineer & Digital Architect
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-mohammedalghanam.com-0C0C0B?style=for-the-badge&logo=google-chrome&logoColor=white)](https://mohammedalghanam.com)
+[![Portfolio](https://img.shields.io/badge/Portfolio-mohamedelghanam.pages.dev-0C0C0B?style=for-the-badge&logo=google-chrome&logoColor=white)](https://mohamedelghanam.pages.dev/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-mo--alghanam-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mo-alghanam/)
 [![GitHub](https://img.shields.io/badge/GitHub-H3m0rv1ch1-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/H3m0rv1ch1)
 
@@ -16,7 +16,7 @@
 
 A **high-performance**, sleek portfolio website built with **React + Vite + TypeScript**. Featuring a sophisticated dark/light theme system, smooth animations, and optimized loading for the best user experience.
 
-![Portfolio Preview](./public/preview.png)
+![Portfolio Preview](./public/img.png)
 
 ---
 
@@ -178,7 +178,7 @@ This project is **private** and designed specifically for Mohammed Alghanam's po
 
 ## 🤝 Connect
 
-- **Portfolio:** [mohammedalghanam.com](https://mohammedalghanam.com)
+- **Portfolio:** [mohamedelghanam.pages.dev](https://mohamedelghanam.pages.dev/)
 - **LinkedIn:** [mo-alghanam](https://www.linkedin.com/in/mo-alghanam/)
 - **Email:** mohamed.atef.23@gmail.com
 

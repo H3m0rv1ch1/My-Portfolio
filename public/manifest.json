@@ -19,7 +19,7 @@
   "categories": ["portfolio", "developer", "technology"],
   "screenshots": [
     {
-      "src": "/og-image.png",
+      "src": "/img.png",
       "sizes": "1200x630",
       "type": "image/png",
       "form_factor": "wide"
