@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState, memo, useCallback } from 'react';
+import { createPortal } from 'react-dom';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface Experience {
   company: string;
@@ -44,19 +46,22 @@ const MemoizedAwardItem = memo(function AwardItem({
   index, 
   isHovered, 
   onEnter, 
-  onLeave 
+  onLeave, 
+  onOpen 
 }: { 
   award: Award; 
   index: number; 
   isHovered: boolean;
   onEnter: (i: number) => void;
   onLeave: () => void;
+  onOpen: (i: number) => void;
 }) {
   return (
     <div
       className={`award-item ${isHovered ? 'hovered' : ''}`}
       onMouseEnter={() => onEnter(index)}
       onMouseLeave={onLeave}
+      onClick={() => onOpen(index)}
     >
       <div className="aw-l">
         <span className="aw-title">{award.title}</span>
@@ -69,20 +74,38 @@ const MemoizedAwardItem = memo(function AwardItem({
 
 export default function About(): JSX.Element {
   const sectionRef = useRef<HTMLElement>(null);
+  const previewRef = useRef<HTMLDivElement>(null);
   const [hoveredCert, setHoveredCert] = useState<number | null>(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [smoothPosition, setSmoothPosition] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const touchStartX = useRef<number | null>(null);
+  const mouseTarget = useRef({ x: 0, y: 0 });
+  const mouseSmooth = useRef({ x: 0, y: 0 });
   const animationRef = useRef<number | null>(null);
 
   useEffect(() => {
     const lerp = (start: number, end: number, factor: number) => start + (end - start) * factor;
+    const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
 
     const animate = () => {
-      setSmoothPosition((prev) => ({
-        x: lerp(prev.x, mousePosition.x, 0.15),
-        y: lerp(prev.y, mousePosition.y, 0.15),
-      }));
+      mouseSmooth.current = {
+        x: lerp(mouseSmooth.current.x, mouseTarget.current.x, 0.15),
+        y: lerp(mouseSmooth.current.y, mouseTarget.current.y, 0.15),
+      };
+
+      const preview = previewRef.current;
+      if (preview) {
+        const margin = 16;
+        const w = preview.offsetWidth;
+        const h = preview.offsetHeight;
+        let x = mouseSmooth.current.x + 24;
+        let y = mouseSmooth.current.y - h - 24;
+        if (y < margin) y = mouseSmooth.current.y + 24;
+        x = clamp(x, margin, Math.max(margin, window.innerWidth - w - margin));
+        y = clamp(y, margin, Math.max(margin, window.innerHeight - h - margin));
+        preview.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+      }
+
       animationRef.current = requestAnimationFrame(animate);
     };
 
@@ -93,14 +116,16 @@ export default function About(): JSX.Element {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [mousePosition]);
+  }, []);
 
   // Memoized handlers to prevent unnecessary re-renders
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    setMousePosition({ x: e.clientX, y: e.clientY });
+    mouseTarget.current = { x: e.clientX, y: e.clientY };
   }, []);
 
   const handleMouseEnter = useCallback((index: number) => {
+    // Only show the floating preview on fine-pointer (hover) devices
+    if (!window.matchMedia('(pointer: fine)').matches) return;
     setHoveredCert(index);
     setIsVisible(true);
   }, []);
@@ -109,6 +134,55 @@ export default function About(): JSX.Element {
     setHoveredCert(null);
     setIsVisible(false);
   }, []);
+
+  const openLightbox = useCallback((index: number) => {
+    setLightboxIndex(index);
+    document.body.style.overflow = 'hidden';
+  }, []);
+
+  const closeLightbox = useCallback(() => {
+    setLightboxIndex(null);
+    document.body.style.overflow = '';
+  }, []);
+
+  const showNextCert = useCallback(() => {
+    setLightboxIndex((prev) => (prev === null ? null : (prev + 1) % awards.length));
+  }, []);
+
+  const showPrevCert = useCallback(() => {
+    setLightboxIndex((prev) => (prev === null ? null : (prev - 1 + awards.length) % awards.length));
+  }, []);
+
+  // Keyboard navigation + scroll lock cleanup
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') showNextCert();
+      if (e.key === 'ArrowLeft') showPrevCert();
+    };
+
+    window.addEventListener('keydown', handleKey);
+    return () => {
+      window.removeEventListener('keydown', handleKey);
+      document.body.style.overflow = '';
+    };
+  }, [lightboxIndex, closeLightbox, showNextCert, showPrevCert]);
+
+  // Swipe navigation for touch devices
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  }, []);
+
+  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const delta = e.changedTouches[0].clientX - touchStartX.current;
+    touchStartX.current = null;
+    if (Math.abs(delta) < 40) return;
+    if (delta < 0) showNextCert();
+    else showPrevCert();
+  }, [showNextCert, showPrevCert]);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -139,33 +213,107 @@ export default function About(): JSX.Element {
 
   return (
     <section id="about" ref={sectionRef} onMouseMove={handleMouseMove}>
-      {/* Certificate Preview Popup */}
-      <div
-        className="cert-preview"
-        style={{
-          transform: `translate3d(${smoothPosition.x + 20}px, ${smoothPosition.y - 150}px, 0)`,
-          opacity: isVisible ? 1 : 0,
-          scale: isVisible ? '1' : '0.8',
-          pointerEvents: 'none',
-          width: hoveredCert !== null ? (awards[hoveredCert].previewWidth ?? 320) : 320,
-          height: hoveredCert !== null ? (awards[hoveredCert].previewHeight ?? 220) : 220,
-        }}
-      >
-        <div className="cert-preview-inner">
-          {awards.map((award, index) => (
-            <img
-              key={award.title}
-              src={award.image}
-              alt={award.title}
-              className="cert-preview-img"
-              style={{
-                opacity: hoveredCert === index ? 1 : 0,
-                transform: hoveredCert === index ? 'scale(1)' : 'scale(1.1)',
-              }}
-            />
-          ))}
-        </div>
-      </div>
+      {/* Certificate Preview Popup — portaled to body so it stays viewport-fixed (escapes #about's content-visibility containment) */}
+      {createPortal(
+        <div
+          ref={previewRef}
+          className="cert-preview"
+          style={{
+            opacity: isVisible ? 1 : 0,
+            scale: isVisible ? '1' : '0.8',
+            pointerEvents: 'none',
+            width: hoveredCert !== null ? (awards[hoveredCert].previewWidth ?? 320) : 320,
+            height: hoveredCert !== null ? (awards[hoveredCert].previewHeight ?? 220) : 220,
+          }}
+        >
+          <div className="cert-preview-inner">
+            {awards.map((award, index) => (
+              <img
+                key={award.title}
+                src={award.image}
+                alt={award.title}
+                className="cert-preview-img"
+                style={{
+                  opacity: hoveredCert === index ? 1 : 0,
+                  transform: hoveredCert === index ? 'scale(1)' : 'scale(1.1)',
+                }}
+              />
+            ))}
+          </div>
+        </div>,
+        document.body
+      )}
+
+      {/* Certificate Lightbox — mobile-friendly fullscreen viewer (tap item to open) */}
+      {createPortal(
+        <div
+          className={`cert-lightbox ${lightboxIndex !== null ? 'open' : ''}`}
+          onClick={closeLightbox}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Certificate viewer"
+        >
+          <div className="cert-lightbox-stage">
+            <button
+              className="cert-lightbox-btn close"
+              onClick={closeLightbox}
+              aria-label="Close certificate viewer"
+            >
+              <X size={22} />
+            </button>
+
+            {lightboxIndex !== null && (
+              <>
+                <button
+                  className="cert-lightbox-btn prev"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    showPrevCert();
+                  }}
+                  aria-label="Previous certificate"
+                >
+                  <ChevronLeft size={26} />
+                </button>
+
+                <div
+                  className="cert-lightbox-img-wrap"
+                  onTouchStart={handleTouchStart}
+                  onTouchEnd={handleTouchEnd}
+                >
+                  <img
+                    src={awards[lightboxIndex].image}
+                    alt={awards[lightboxIndex].title}
+                    className="cert-lightbox-img"
+                    onClick={(e) => e.stopPropagation()}
+                  />
+                </div>
+
+                <button
+                  className="cert-lightbox-btn next"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    showNextCert();
+                  }}
+                  aria-label="Next certificate"
+                >
+                  <ChevronRight size={26} />
+                </button>
+
+                <div className="cert-lightbox-caption">
+                  <span className="clb-title">{awards[lightboxIndex].title}</span>
+                  <span className="clb-sub">
+                    {awards[lightboxIndex].issuer} — {awards[lightboxIndex].year}
+                  </span>
+                  <span className="clb-count">
+                    {lightboxIndex + 1} / {awards.length}
+                  </span>
+                </div>
+              </>
+            )}
+          </div>
+        </div>,
+        document.body
+      )}
       <div className="s-header about-animate">
         <div>
           <p className="s-label">About</p>
@@ -220,6 +368,7 @@ export default function About(): JSX.Element {
                   isHovered={hoveredCert === index}
                   onEnter={handleMouseEnter}
                   onLeave={handleMouseLeave}
+                  onOpen={openLightbox}
                 />
               ))}
             </div>
