@@ -229,7 +229,7 @@ nav.scrolled {
   left: 22px;
   right: 22px;
   bottom: 0;
-  background: url('/herobg.png') center bottom/auto 105% no-repeat;
+  background: url('/herobg.png') center bottom/auto 108% no-repeat;
   background-color: transparent;
   z-index: 2;
   opacity: 1;
@@ -239,7 +239,7 @@ nav.scrolled {
 }
 
 [data-theme="light"] .hero-bg {
-  background: url('/bgwhitehero.png') center bottom/auto 105% no-repeat;
+  background: url('/bgwhitehero.png') center bottom/auto 108% no-repeat;
   background-color: transparent;
   box-shadow: none;
   filter: none;
@@ -261,7 +261,7 @@ nav.scrolled {
 
 .hero-title {
   position: absolute;
-  top: 34%;
+  top: 42%;
   left: 0;
   right: 0;
   z-index: 1;
@@ -1473,10 +1473,11 @@ body.menu-open {
     right: 12px;
     bottom: 0;
     background-position: center bottom !important;
+    background-size: contain !important;
   }
 
   .hero-title {
-    top: 42%;
+    top: 62%;
     font-size: clamp(38px, 11vw, 52px);
     line-height: 0.95;
   }
@@ -1576,10 +1577,11 @@ body.menu-open {
     right: 8px;
     bottom: 0;
     background-position: center bottom !important;
+    background-size: contain !important;
   }
 
   .hero-title {
-    top: 46%;
+    top: 64%;
     font-size: clamp(44px, 12vw, 100px);
   }
 
