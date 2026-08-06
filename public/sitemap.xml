@@ -1,21 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://mohamedelghanam.pages.dev/</loc>
-    <lastmod>2025-01-15</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>1.0</priority>
-    <image:image>
-      <image:loc>https://mohamedelghanam.pages.dev/img.png</image:loc>
-      <image:title>Mohammed Alghanam Portfolio</image:title>
-      <image:caption>Full Stack Engineer & Digital Architect Portfolio</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://mohamedelghanam.pages.dev/img.png</image:loc>
-      <image:title>Mohammed Alghanam Profile Photo</image:title>
-      <image:caption>Mohammed Alghanam - Full Stack Engineer</image:caption>
-    </image:image>
   </url>
 </urlset>

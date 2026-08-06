@@ -1,0 +1,60 @@
+# Mohammed Alghanam — Full Machine-Readable Profile
+
+Full Stack Engineer & Digital Architect bridging creative design and technical engineering. Builds robust, secure, and visually stunning digital solutions — from immersive WordPress experiences for luxury brands to complex data-driven ERP systems.
+
+## Contact
+- Email: mohamed.atef.23@gmail.com
+- Website: https://mohamedelghanam.pages.dev
+- GitHub: https://github.com/H3m0rv1ch1
+- LinkedIn: https://www.linkedin.com/in/mo-alghanam/
+- Twitter: https://twitter.com/mohammed_alghanam
+- Location: Remote / Worldwide
+
+## Work Experience
+
+1. **Freelance — Lead Full Stack Developer** (2024 — Present)
+   - Leading full-stack development projects end to end.
+2. **Bugshan Egypt Group — IT Manager** (2023 — 2024)
+   - Managed IT operations, infrastructure and support teams.
+3. **Egy Shark Construction — IT Infrastructure Specialist** (2021 — 2023)
+   - Designed and maintained IT infrastructure.
+4. **Research Institute of Ophthalmology — System Support Engineer** (2019 — 2022)
+   - Provided system support and maintenance.
+5. **M.I.C.A Academy — Network Operations Lead** (2019 — 2021)
+   - Led network operations and administration.
+
+## Skills
+
+React, Next.js, TypeScript, Node.js, WordPress, PHP, MongoDB, MySQL, Tailwind CSS, Git & GitHub, Network Security, Windows Server, UI/UX Design, System Architecture
+
+## Projects
+
+1. **Noor Dubai AI** — AI-powered application.
+2. **Billionaire ERP** — Enterprise resource planning system.
+3. **Watermarking App** — Image watermarking application.
+4. **X To-Do Corp** — Productivity / task management app.
+5. **Noor Interiors** — Interior design web platform.
+6. **Noor Woods** — Woodworking / furniture web platform.
+7. **Spookify AI** — AI-powered creative application.
+8. **Enjaz** — Achievement / platform application.
+9. **Native Dictate Pro** — Native dictation application.
+10. **Rafiq Al-Muslim** — Islamic companion application.
+11. **Doctor's Outfit** — Healthcare-related web application.
+
+## Certifications
+
+1. **Microsoft MTA — Networking Fundamentals** (Microsoft, 2019)
+2. **Microsoft MTA — Windows OS Fundamentals** (Microsoft, 2019)
+3. **Microsoft MTA — Server Administration** (Microsoft, 2020)
+4. **Optical Fiber Network Installation** (NTI Egypt, 2021)
+5. **Training Statement of Completion** (NTI Egypt, 2021)
+6. **Certificate of Experience** (Professional, 2024)
+
+## Languages
+
+- Arabic (Native)
+- English (Professional)
+
+## Summary
+
+Mohammed Alghanam is a Full Stack Engineer & Digital Architect with 5+ years of experience spanning web development, IT management, and network infrastructure. He currently works as a Lead Full Stack Developer helping businesses transform their digital presence through strategic technical solutions.

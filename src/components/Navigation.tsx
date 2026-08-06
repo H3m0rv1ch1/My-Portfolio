@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useScrollNav } from '../hooks/useScrollNav';
 import { useTheme } from '../hooks/useTheme';
+import { useMode } from '../hooks/useMode';
+import { Bot, User } from 'lucide-react';
 
 export default function Navigation(): JSX.Element {
   const scrolled = useScrollNav();
   const { theme, toggleTheme } = useTheme();
+  const { mode, toggleMode } = useMode();
   const [menuOpen, setMenuOpen] = useState(false);
 
   // Add/remove menu-open class on body for backdrop blur
@@ -23,6 +26,12 @@ export default function Navigation(): JSX.Element {
 
   return (
     <>
+      {mode === 'ai' && (
+        <div className="ai-banner" role="note">
+          <span>MACHINE-READABLE MODE — structured view for AI agents &amp; crawlers</span>
+          <button onClick={toggleMode} aria-label="Switch back to human mode">Switch to human design</button>
+        </div>
+      )}
       <div 
         className={`menu-backdrop${menuOpen ? ' open' : ''}`}
         onClick={closeMenu}
@@ -39,6 +48,14 @@ export default function Navigation(): JSX.Element {
             <li><a href="#about" onClick={closeMenu}>About</a></li>
             <li><a href="#contact" onClick={closeMenu}>Contact</a></li>
           </ul>
+        <button 
+          className="theme-btn mode-btn" 
+          onClick={toggleMode}
+          aria-label={mode === 'human' ? 'Switch to AI mode' : 'Switch to human mode'}
+          title={mode === 'human' ? 'Switch to AI / machine mode' : 'Switch to human mode'}
+        >
+          {mode === 'human' ? <Bot size={16} /> : <User size={16} />}
+        </button>
         <button 
           className="theme-btn" 
           onClick={toggleTheme}

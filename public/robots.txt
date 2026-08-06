@@ -1,25 +1,45 @@
-User-agent: *
+# Allow all AI / search crawlers
+User-agent: GPTBot
 Allow: /
 
-# Sitemap
-Sitemap: https://mohammedalghanam.com/sitemap.xml
+User-agent: OAI-SearchBot
+Allow: /
 
-# Crawl-delay
-Crawl-delay: 1
+User-agent: ChatGPT-User
+Allow: /
 
-# Disallow patterns
-Disallow: /api/
-Disallow: /admin/
-Disallow: /private/
-Disallow: /*.json$
-Disallow: /*?*
+User-agent: ClaudeBot
+Allow: /
 
-# Google-specific
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
 User-agent: Googlebot
 Allow: /
 
-User-agent: Googlebot-Image
+User-agent: PerplexityBot
 Allow: /
 
-User-agent: Googlebot-Mobile
+User-agent: CCBot
 Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Default: allow everything
+User-agent: *
+Allow: /
+
+Sitemap: https://mohamedelghanam.pages.dev/sitemap.xml

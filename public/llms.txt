@@ -1,0 +1,22 @@
+# Mohammed Alghanam — Full Stack Engineer & Digital Architect
+
+> Full Stack Engineer & Digital Architect specializing in React, Next.js, TypeScript, Node.js, WordPress, and enterprise systems. Based in Egypt, working worldwide (remote).
+
+## Key facts
+- Name: Mohammed Alghanam
+- Role: Full Stack Engineer & Digital Architect
+- Experience: 5+ years
+- Email: mohamed.atef.23@gmail.com
+- Website: https://mohamedelghanam.pages.dev
+- GitHub: https://github.com/H3m0rv1ch1
+- LinkedIn: https://www.linkedin.com/in/mo-alghanam/
+
+## Sections
+- [Work / Projects](https://mohamedelghanam.pages.dev/#work): 11 projects spanning AI applications, ERP systems, mobile apps and web platforms
+- [About / Experience](https://mohamedelghanam.pages.dev/#about): Freelance lead development, IT management, infrastructure and network operations
+- [Certifications](https://mohamedelghanam.pages.dev/#about): Microsoft MTA series, NTI Egypt, and professional certificates
+- [Contact](https://mohamedelghanam.pages.dev/#contact): Email and social links
+
+## Additional resources
+- Full machine-readable content: https://mohamedelghanam.pages.dev/llms-full.txt
+- Sitemap: https://mohamedelghanam.pages.dev/sitemap.xml
