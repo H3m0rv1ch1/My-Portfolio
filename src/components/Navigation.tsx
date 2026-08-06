@@ -1,15 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useScrollNav } from '../hooks/useScrollNav';
 import { useTheme } from '../hooks/useTheme';
-import { Bot, User } from 'lucide-react';
-import type { Mode } from '../hooks/useMode';
 
-interface NavigationProps {
-  mode: Mode;
-  toggleMode: () => void;
-}
-
-export default function Navigation({ mode, toggleMode }: NavigationProps): JSX.Element {
+export default function Navigation(): JSX.Element {
   const scrolled = useScrollNav();
   const { theme, toggleTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -46,14 +39,6 @@ export default function Navigation({ mode, toggleMode }: NavigationProps): JSX.E
             <li><a href="#about" onClick={closeMenu}>About</a></li>
             <li><a href="#contact" onClick={closeMenu}>Contact</a></li>
           </ul>
-        <button 
-          className="theme-btn mode-btn" 
-          onClick={toggleMode}
-          aria-label={mode === 'human' ? 'Switch to AI mode' : 'Switch to human mode'}
-          title={mode === 'human' ? 'Switch to AI / machine mode' : 'Switch to human mode'}
-        >
-          {mode === 'human' ? <Bot size={16} /> : <User size={16} />}
-        </button>
         <button 
           className="theme-btn" 
           onClick={toggleTheme}

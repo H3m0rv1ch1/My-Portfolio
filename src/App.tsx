@@ -4,8 +4,6 @@ import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import Marquee from './components/Marquee';
 import BackToTop from './components/BackToTop';
-import AIMode from './components/AIMode';
-import { useMode } from './hooks/useMode';
 
 // Lazy load below-fold components for better initial load performance
 const Work = lazy(() => import('./components/Work'));
@@ -16,8 +14,6 @@ const Contact = lazy(() => import('./components/Contact'));
 const SectionFallback = () => <div style={{ minHeight: '50vh' }} />;
 
 function App(): JSX.Element {
-  const { mode, toggleMode } = useMode();
-
   useEffect(() => {
     // Hide preloader after animation
     const preloader = document.getElementById('preloader');
@@ -29,14 +25,10 @@ function App(): JSX.Element {
     }
   }, []);
 
-  if (mode === 'ai') {
-    return <AIMode onBack={toggleMode} />;
-  }
-
   return (
     <>
       <CustomCursor />
-      <Navigation mode={mode} toggleMode={toggleMode} />
+      <Navigation />
       
       <main>
         <Hero />

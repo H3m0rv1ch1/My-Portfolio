@@ -199,8 +199,6 @@
     (function(){
       var s = localStorage.getItem('theme');
       document.documentElement.setAttribute('data-theme', s ? s : (window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light'));
-      var m = localStorage.getItem('portfolio_mode');
-      document.documentElement.setAttribute('data-mode', m === 'ai' ? 'ai' : 'human');
     }());
   </script>
   
