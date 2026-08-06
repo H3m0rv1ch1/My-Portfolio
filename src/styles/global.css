@@ -261,7 +261,7 @@ nav.scrolled {
 
 .hero-title {
   position: absolute;
-  top: 36%;
+  top: 30%;
   left: 0;
   right: 0;
   z-index: 1;
@@ -1477,7 +1477,7 @@ body.menu-open {
   }
 
   .hero-title {
-    top: 56%;
+    top: 50%;
     font-size: clamp(38px, 11vw, 52px);
     line-height: 0.95;
   }
@@ -1581,7 +1581,7 @@ body.menu-open {
   }
 
   .hero-title {
-    top: 58%;
+    top: 52%;
     font-size: clamp(44px, 12vw, 100px);
   }
 
