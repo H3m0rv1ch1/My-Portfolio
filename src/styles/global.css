@@ -1472,7 +1472,7 @@ body.menu-open {
     left: 12px;
     right: 12px;
     bottom: 0;
-    height: 44vh;
+    height: 50vh;
     background-position: center bottom !important;
     background-size: contain !important;
   }
@@ -1500,7 +1500,7 @@ body.menu-open {
     flex-direction: column;
     align-items: center;
     gap: 16px;
-    margin-bottom: calc(44vh + 28px);
+    margin-bottom: calc(50vh + 28px);
   }
   .hero-right { align-items: center; }
   .hero-desc { max-width: 100%; font-size: 14px; text-align: center; }
@@ -1591,7 +1591,7 @@ body.menu-open {
     left: 8px;
     right: 8px;
     bottom: 0;
-    height: 38vh;
+    height: 44vh;
     background-position: center bottom !important;
     background-size: contain !important;
   }
@@ -1611,7 +1611,7 @@ body.menu-open {
   }
 
   .hero-eyebrow { font-size: 10px; margin-bottom: 12px; text-align: center; }
-  .hero-bottom { align-items: center; gap: 14px; margin-bottom: calc(38vh + 24px); }
+  .hero-bottom { align-items: center; gap: 14px; margin-bottom: calc(44vh + 24px); }
   .hero-right { align-items: center; }
   .hero-desc { font-size: 13px; line-height: 1.6; text-align: center; }
   .pill { font-size: 10px; padding: 5px 10px; gap: 5px; }
