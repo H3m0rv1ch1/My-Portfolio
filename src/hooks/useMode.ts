@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 // Human / AI mode - no sensitive data stored
-type Mode = 'human' | 'ai';
+export type Mode = 'human' | 'ai';
 
 interface UseModeReturn {
   mode: Mode;
