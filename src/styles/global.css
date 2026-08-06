@@ -1461,34 +1461,49 @@ body.menu-open {
     z-index: 199;
   }
 
-  /* Hero */
+  /* Hero — stacked layout: text on top, photo at bottom */
   #hero {
     min-height: 92svh;
-    justify-content: center;
-    padding: 86px 20px max(36px, calc(36px + env(safe-area-inset-bottom)));
+    justify-content: flex-start;
+    padding: 86px 20px 0;
   }
   .hero-bg {
-    top: 10px;
+    top: auto;
     left: 12px;
     right: 12px;
     bottom: 0;
+    height: 38vh;
     background-position: center bottom !important;
     background-size: contain !important;
   }
 
+  .hero-eyebrow {
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
   .hero-title {
-    top: 50%;
-    font-size: clamp(38px, 11vw, 52px);
+    position: static;
+    top: auto;
+    font-size: clamp(36px, 11vw, 60px);
     line-height: 0.95;
+    text-align: center;
+    margin: 4px 0 26px;
+    pointer-events: auto;
   }
 
   [data-theme="light"] .hero-bg {
     background-position: center bottom !important;
   }
 
-  .hero-bottom { flex-direction: column; align-items: flex-start; }
-  .hero-right { align-items: flex-start; }
-  .hero-desc { max-width: 100%; font-size: 14px; }
+  .hero-bottom {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: calc(38vh + 28px);
+  }
+  .hero-right { align-items: center; }
+  .hero-desc { max-width: 100%; font-size: 14px; text-align: center; }
   .scroll-hint { top: auto; bottom: 56px; right: 20px; }
 
   /* Sections */
@@ -1568,30 +1583,37 @@ body.menu-open {
 
   #hero {
     min-height: 90svh;
-    justify-content: center;
-    padding: 76px 16px max(30px, calc(30px + env(safe-area-inset-bottom)));
+    justify-content: flex-start;
+    padding: 76px 16px 0;
   }
   .hero-bg {
-    top: 6px;
+    top: auto;
     left: 8px;
     right: 8px;
     bottom: 0;
+    height: 32vh;
     background-position: center bottom !important;
     background-size: contain !important;
   }
 
   .hero-title {
-    top: 52%;
-    font-size: clamp(44px, 12vw, 100px);
+    position: static;
+    top: auto;
+    font-size: clamp(34px, 11vw, 48px);
+    line-height: 0.95;
+    text-align: center;
+    margin: 4px 0 22px;
+    pointer-events: auto;
   }
 
   [data-theme="light"] .hero-bg {
     background-position: center bottom !important;
   }
 
-  .hero-eyebrow { font-size: 10px; margin-bottom: 14px; }
-  .hero-title { font-size: clamp(44px, 12vw, 100px); line-height: 0.95; }
-  .hero-desc { font-size: 13px; line-height: 1.6; }
+  .hero-eyebrow { font-size: 10px; margin-bottom: 12px; text-align: center; }
+  .hero-bottom { align-items: center; gap: 14px; margin-bottom: calc(32vh + 24px); }
+  .hero-right { align-items: center; }
+  .hero-desc { font-size: 13px; line-height: 1.6; text-align: center; }
   .pill { font-size: 10px; padding: 5px 10px; gap: 5px; }
   .scroll-hint { bottom: 44px; right: 16px; }
 
