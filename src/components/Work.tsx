@@ -1,149 +1,13 @@
 import { useEffect, useRef, memo } from 'react';
-import { HoverExpand } from './HoverExpand';
+import { projects, type Project } from '../data/projects';
+import { ProjectShot } from './ProjectShot';
 
-interface Project {
-  id: string;
-  name: string;
-  company: string;
-  year: string;
-  tags: string[];
-  description: string;
-  gradient: string;
-  liveUrl: string;
-  githubUrl: string;
-}
+const projectSlugHref = (p: Project): string =>
+  `${window.location.pathname}#/project/${p.slug}`;
 
-interface HoverItem {
-  label: string;
-  sublabel: string;
-  description: string;
-  gradient: string;
-  liveUrl: string;
-}
-
-const projects: Project[] = [
-  {
-    id: '01',
-    name: 'Noor Dubai AI',
-    company: 'Noor Group',
-    year: '2024',
-    tags: ['WordPress', 'Elementor Pro', 'Motion Design'],
-    description: 'Futuristic digital HQ for advertising agency with immersive experience.',
-    gradient: 'p-noor-ai',
-    liveUrl: 'https://noordubai.ai/',
-    githubUrl: 'https://github.com/H3m0rv1ch1'
-  },
-  {
-    id: '02',
-    name: 'Billionaire ERP',
-    company: 'Billionaire Car Rental',
-    year: '2024',
-    tags: ['Next.js', 'React', 'TypeScript', 'Node.js'],
-    description: 'Mission-critical ERP for fleet management & bookings.',
-    gradient: 'p-billionaire',
-    liveUrl: 'https://www.facebook.com/billionaire.for.rent/',
-    githubUrl: 'https://github.com/H3m0rv1ch1'
-  },
-  {
-    id: '03',
-    name: 'Watermarking App',
-    company: 'Personal Project',
-    year: '2024',
-    tags: ['React', 'Canvas API', 'JavaScript'],
-    description: 'Client-side image processing tool for batch watermarking.',
-    gradient: 'p-watermark',
-    liveUrl: 'https://watermarking-app.pages.dev/',
-    githubUrl: 'https://github.com/H3m0rv1ch1/Watermarking-App'
-  },
-  {
-    id: '04',
-    name: 'X To-Do Corp',
-    company: 'Personal Project',
-    year: '2024',
-    tags: ['React', 'TypeScript', 'State Management'],
-    description: 'Corporate task management with drag-and-drop.',
-    gradient: 'p-todo',
-    liveUrl: '#private',
-    githubUrl: 'https://github.com/H3m0rv1ch1/x-to-do-corp'
-  },
-  {
-    id: '05',
-    name: 'Noor Interiors',
-    company: 'Noor Group',
-    year: '2024',
-    tags: ['WordPress', 'Elementor', 'Web Design'],
-    description: 'Interior design portfolio with elegant visual storytelling.',
-    gradient: 'p-noor-interiors',
-    liveUrl: 'https://noordubai.net/',
-    githubUrl: 'https://github.com/H3m0rv1ch1'
-  },
-  {
-    id: '06',
-    name: 'Noor Woods',
-    company: 'Noor Group',
-    year: '2024',
-    tags: ['WordPress', 'E-commerce', 'WooCommerce'],
-    description: 'Woodwork and carpentry showcase with product catalog.',
-    gradient: 'p-noor-woods',
-    liveUrl: 'https://noorwoods.com',
-    githubUrl: 'https://github.com/H3m0rv1ch1'
-  },
-  {
-    id: '07',
-    name: 'Spookify AI',
-    company: 'Personal Project',
-    year: '2024',
-    tags: ['React', 'TypeScript', 'AI', 'Tailwind CSS'],
-    description: 'AI-powered Halloween costume generator.',
-    gradient: 'p-spookify',
-    liveUrl: 'https://spookify-ai-the-void.pages.dev/upload',
-    githubUrl: 'https://github.com/H3m0rv1ch1/spookify-ai-The-void'
-  },
-  {
-    id: '08',
-    name: 'Enjaz',
-    company: 'Personal Project',
-    year: '2024',
-    tags: ['Tauri', 'React', 'TypeScript', 'Desktop'],
-    description: 'Desktop app for team performance tracking.',
-    gradient: 'p-enjaz',
-    liveUrl: 'https://enjaz.pages.dev/#/dashboard',
-    githubUrl: 'https://github.com/H3m0rv1ch1/Enjaz'
-  },
-  {
-    id: '09',
-    name: 'Native Dictate Pro',
-    company: 'Private Project',
-    year: '2024',
-    tags: ['React Native', 'TypeScript', 'Mobile'],
-    description: 'Private dictation and transcription app.',
-    gradient: 'p-dictate',
-    liveUrl: '#private',
-    githubUrl: '#private'
-  },
-  {
-    id: '10',
-    name: 'Rafiq Al-Muslim',
-    company: 'Personal Project',
-    year: '2024',
-    tags: ['Next.js', 'PWA', 'React', 'Tailwind CSS'],
-    description: 'Islamic web app with prayer times, Quran, AI assistant.',
-    gradient: 'p-rafiq',
-    liveUrl: 'https://rafiqalmuslim.com/',
-    githubUrl: 'https://github.com/H3m0rv1ch1'
-  },
-  {
-    id: '11',
-    name: "Doctor's Outfit",
-    company: 'Personal Project',
-    year: '2024',
-    tags: ['Next.js', 'React', 'E-commerce', 'Stripe', 'Prisma'],
-    description: 'Modern e-commerce platform for medical apparel with seamless checkout.',
-    gradient: 'p-doctors',
-    liveUrl: 'https://doctorsoutfit.com',
-    githubUrl: 'https://github.com/H3m0rv1ch1'
-  }
-];
+const handleNav = (p: Project): void => {
+  window.location.hash = `/project/${p.slug}`;
+};
 
 const Work = memo(function Work(): JSX.Element {
   const sectionRef = useRef<HTMLElement>(null);
@@ -152,43 +16,60 @@ const Work = memo(function Work(): JSX.Element {
     const section = sectionRef.current;
     if (!section) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            (entry.target as HTMLElement).style.opacity = '1';
-            (entry.target as HTMLElement).style.transform = 'translateY(0)';
+    const cards = Array.from(section.querySelectorAll<HTMLElement>('.stack-card'));
+    if (!cards.length) return;
+
+    let raf = 0;
+
+    const update = (): void => {
+      raf = 0;
+      const firstStyle = getComputedStyle(cards[0]);
+      const stickyTop = parseFloat(firstStyle.top) || 110;
+      const vh = window.innerHeight;
+      const range = vh * 0.72;
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      for (let i = 0; i < cards.length; i++) {
+        const card = cards[i];
+        const next = cards[i + 1];
+
+        if (!next || reduce) {
+          if (!reduce) {
+            card.style.transform = '';
+            card.style.filter = '';
           }
-        });
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-    );
+          continue;
+        }
 
-    const cards = section.querySelectorAll('.pcard');
-    cards.forEach((card, i) => {
-      (card as HTMLElement).style.opacity = '0';
-      (card as HTMLElement).style.transform = 'translateY(40px)';
-      (card as HTMLElement).style.transition = `opacity 0.6s ease ${i * 0.1}s, transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94) ${i * 0.1}s`;
-      observer.observe(card);
-    });
+        // How far the next card still is from covering this one.
+        const dist = next.getBoundingClientRect().top - stickyTop;
+        const p = Math.min(1, Math.max(0, 1 - Math.max(dist, 0) / range));
 
-    return () => observer.disconnect();
+        if (p === 0) {
+          card.style.transform = '';
+          card.style.filter = '';
+        } else {
+          card.style.transform = `scale(${1 - 0.045 * p}) translateY(${p * -14}px)`;
+          card.style.filter = `brightness(${1 - 0.14 * p})`;
+        }
+      }
+    };
+
+    const onScroll = (): void => {
+      if (raf) return;
+      raf = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, []);
-
-  const hoverItems: HoverItem[] = projects.map((p) => ({
-    label: p.name,
-    sublabel: p.year,
-    description: p.tags.slice(0, 3).join(' · '),
-    gradient: p.gradient,
-    liveUrl: p.liveUrl,
-  }));
-
-  const handleItemClick = (index: number): void => {
-    const item = hoverItems[index];
-    if (item.liveUrl && item.liveUrl !== '#private') {
-      window.open(item.liveUrl, '_blank', 'noopener,noreferrer');
-    }
-  };
 
   return (
     <section id="work" ref={sectionRef}>
@@ -197,13 +78,84 @@ const Work = memo(function Work(): JSX.Element {
           <p className="s-label">Selected Work</p>
           <h2 className="s-title">Projects</h2>
         </div>
-        <span className="s-count">11</span>
+        <span className="s-count">{projects.length}</span>
       </div>
 
-      <HoverExpand 
-        items={hoverItems} 
-        onItemClick={handleItemClick}
-      />
+      <div className="projects">
+        {projects.map((p) => {
+          const isPrivate = p.liveUrl === '#private';
+          return (
+            <article
+              key={p.id}
+              className={`stack-card pcard ${p.gradient}`}
+              aria-labelledby={`proj-${p.id}`}
+            >
+              <div className="pcard-inner">
+                {/* Visual — LEFT: opens the project case page */}
+                <a
+                className="pcard-vis"
+                href={projectSlugHref(p)}
+                aria-label={`View ${p.name} project details`}
+                onClick={(e) => { e.preventDefault(); handleNav(p); }}
+                tabIndex={0}
+              >
+                <div className="pcard-bg" />
+                <div className="pcard-img-overlay" />
+                <ProjectShot slug={p.slug} name={p.name} />
+                <span className="blob blob1" aria-hidden="true" />
+                <span className="blob blob2" aria-hidden="true" />
+
+                <div className="stack-visual-top" aria-hidden="true">
+                  <span className="pnum-visual">{p.id}</span>
+                  <span className="pyear-visual">{p.year}</span>
+                </div>
+
+                {!isPrivate && (
+                  <span className="p-arrow" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M4 14L14 4M14 4H6M14 4V12" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </span>
+                )}
+              </a>
+
+                {/* Info — RIGHT */}
+              <div className="pcard-info">
+                <div className="pcard-top">
+                  <span className="pnum">{p.id}</span>
+                  <div className="tags">
+                    {p.tags.map((t) => (
+                      <span key={t} className="tag">{t}</span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="pcard-mid">
+                  <p className="pcompany">{p.company}</p>
+                  <h3 className="pname" id={`proj-${p.id}`}>{p.name}</h3>
+                  <p className="pdesc">{p.description}</p>
+                </div>
+
+                <div className="plinks">
+                  {isPrivate ? (
+                    <span className="plink-private">Private — upon request</span>
+                  ) : (
+                    <a className="plink" href={p.liveUrl} target="_blank" rel="noopener noreferrer">
+                      Live Preview ↗
+                    </a>
+                  )}
+                  {p.githubUrl !== '#private' && (
+                    <a className="plink" href={p.githubUrl} target="_blank" rel="noopener noreferrer">
+                      GitHub ↗
+                    </a>
+                  )}
+                </div>
+              </div>
+              </div>
+            </article>
+          );
+        })}
+      </div>
     </section>
   );
 });

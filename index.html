@@ -197,7 +197,7 @@
   
   <script>
     (function(){
-      var s = localStorage.getItem('theme');
+      var s = localStorage.getItem('portfolio_theme') || localStorage.getItem('theme');
       document.documentElement.setAttribute('data-theme', s ? s : (window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light'));
     }());
   </script>

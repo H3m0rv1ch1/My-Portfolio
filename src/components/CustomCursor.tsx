@@ -59,7 +59,7 @@ export default function CustomCursor(): JSX.Element | null {
       const isContactLink = target.closest('.contact-headline a');
       const isBackToTop = target.closest('.back-to-top');
       const isNavLogo = target.closest('.nav-logo');
-      const isProjectCard = target.closest('.he-row');
+      const isProjectCard = target.closest('.pcard-vis');
       
       if (isInteractive) {
         document.body.classList.add('is-hovering');
@@ -80,11 +80,11 @@ export default function CustomCursor(): JSX.Element | null {
 
     const onMouseOut = (e: MouseEvent): void => {
       const target = e.target as HTMLElement;
-      const isInteractive = target.closest('a, button, .pcard, .tag, .skill-pill, .nav-links a, .theme-btn, .pill');
+      const isInteractive = target.closest('a, button, .pcard, .stack-card, .tag, .skill-pill, .nav-links a, .theme-btn, .pill');
       const isContactLink = target.closest('.contact-headline a');
       const isBackToTop = target.closest('.back-to-top');
       const isNavLogo = target.closest('.nav-logo');
-      const isProjectCard = target.closest('.he-row');
+      const isProjectCard = target.closest('.pcard-vis');
       
       if (isInteractive) {
         document.body.classList.remove('is-hovering');
