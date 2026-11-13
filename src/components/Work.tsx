@@ -84,6 +84,7 @@ const Work = memo(function Work(): JSX.Element {
       <div className="projects">
         {projects.map((p) => {
           const isPrivate = p.liveUrl === '#private';
+          const hasLive = Boolean(p.liveUrl) && !isPrivate;
           return (
             <article
               key={p.id}
@@ -137,9 +138,10 @@ const Work = memo(function Work(): JSX.Element {
                 </div>
 
                 <div className="plinks">
-                  {isPrivate ? (
+                  {isPrivate && (
                     <span className="plink-private">Private — upon request</span>
-                  ) : (
+                  )}
+                  {hasLive && (
                     <a className="plink" href={p.liveUrl} target="_blank" rel="noopener noreferrer">
                       Live Preview ↗
                     </a>

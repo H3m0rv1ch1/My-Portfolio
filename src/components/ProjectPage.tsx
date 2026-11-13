@@ -20,15 +20,16 @@ const ArrowIcon = ({ direction = 'up-right' }: { direction?: 'left' | 'up-right'
 /* Cover: the screenshot plate itself, shared with the deck cards */
 function ProjectVisual({ project }: { project: Project }): JSX.Element {
   const isPrivate = project.liveUrl === '#private';
+  const hasLive = Boolean(project.liveUrl) && !isPrivate;
 
   return (
     <a
-      className={`p-hero-vis ${project.gradient}${isPrivate ? ' is-private' : ''}${project.image ? ' has-image' : ''}`}
-      href={isPrivate ? undefined : project.liveUrl}
-      target={isPrivate ? undefined : '_blank'}
-      rel={isPrivate ? undefined : 'noopener noreferrer'}
-      aria-label={isPrivate ? `${project.name} — private project` : `Open ${project.name} live site`}
-      onClick={(e) => { if (isPrivate) e.preventDefault(); }}
+      className={`p-hero-vis ${project.gradient}${isPrivate ? ' is-private' : ''}${hasLive ? '' : ' is-static'}${project.image ? ' has-image' : ''}`}
+      href={hasLive ? project.liveUrl : undefined}
+      target={hasLive ? '_blank' : undefined}
+      rel={hasLive ? 'noopener noreferrer' : undefined}
+      aria-label={hasLive ? `Open ${project.name} live site` : `${project.name} cover`}
+      onClick={(e) => { if (!hasLive) e.preventDefault(); }}
     >
       <div className="pcard-bg" />
       <div className="pcard-img-overlay" />
@@ -40,7 +41,7 @@ function ProjectVisual({ project }: { project: Project }): JSX.Element {
         <span className="p-hero-wordmark">{project.name}</span>
       )}
 
-      {!isPrivate && (
+      {hasLive && (
         <span className="p-hero-arrow" aria-hidden="true">
           <ArrowIcon />
         </span>

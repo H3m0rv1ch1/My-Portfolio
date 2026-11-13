@@ -1,7 +1,7 @@
 // Service Worker for Portfolio Performance Optimization
 // Network-first strategy: always shows the latest version,
 // cache is only a fallback for offline.
-const CACHE_NAME = 'portfolio-v2';
+const CACHE_NAME = 'portfolio-v3';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
@@ -9,7 +9,9 @@ const STATIC_ASSETS = [
   '/bgwhitehero.png',
   '/img.png',
   '/favicon.ico',
-  '/manifest.json'
+  '/manifest.json',
+  '/fonts/inter-var.woff2',
+  '/fonts/syne-var.woff2'
 ];
 
 // Install event - cache static assets
