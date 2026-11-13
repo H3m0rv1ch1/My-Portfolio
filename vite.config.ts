@@ -70,5 +70,10 @@ export default defineConfig({
   server: {
     open: true,
     cors: true,
+    watch: {
+      // Browser download temp files (.crdownload) are locked on Windows and
+      // crash chokidar with EBUSY — never watch them.
+      ignored: ['**/*.crdownload', '**/*.tmp', '**/*.part'],
+    },
   },
 })

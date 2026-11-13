@@ -17,13 +17,13 @@ const ArrowIcon = ({ direction = 'up-right' }: { direction?: 'left' | 'up-right'
   </svg>
 );
 
-/* Cover: optional screenshot lives in ./ProjectShot — shared with the deck cards */
+/* Cover: the screenshot plate itself, shared with the deck cards */
 function ProjectVisual({ project }: { project: Project }): JSX.Element {
   const isPrivate = project.liveUrl === '#private';
 
   return (
     <a
-      className={`p-hero-vis ${project.gradient}${isPrivate ? ' is-private' : ''}`}
+      className={`p-hero-vis ${project.gradient}${isPrivate ? ' is-private' : ''}${project.image ? ' has-image' : ''}`}
       href={isPrivate ? undefined : project.liveUrl}
       target={isPrivate ? undefined : '_blank'}
       rel={isPrivate ? undefined : 'noopener noreferrer'}
@@ -32,22 +32,19 @@ function ProjectVisual({ project }: { project: Project }): JSX.Element {
     >
       <div className="pcard-bg" />
       <div className="pcard-img-overlay" />
-      <ProjectShot slug={project.slug} name={project.name} />
+      <ProjectShot project={project} variant="hero" />
       <span className="blob blob1" aria-hidden="true" />
       <span className="blob blob2" aria-hidden="true" />
 
-      <div className="stack-visual-top" aria-hidden="true">
-        <span className="pnum-visual">{project.id}</span>
-        <span className="pyear-visual">{project.year}</span>
-      </div>
-
-      <div className="p-hero-caption">
+      {!project.image && (
         <span className="p-hero-wordmark">{project.name}</span>
-        <span className={`p-hero-action${isPrivate ? ' is-private' : ''}`}>
-          {isPrivate ? 'Private project' : 'View live site'}
-          {!isPrivate && <ArrowIcon />}
+      )}
+
+      {!isPrivate && (
+        <span className="p-hero-arrow" aria-hidden="true">
+          <ArrowIcon />
         </span>
-      </div>
+      )}
     </a>
   );
 }
@@ -81,7 +78,7 @@ export default function ProjectPage({ slug, onClose }: ProjectPageProps): JSX.El
 
   const navCard = (p: Project, dir: 'prev' | 'next') => (
     <a
-      className={`p-nav-card ${p.gradient} is-${dir}`}
+      className={`p-nav-card ${p.gradient} is-${dir}${p.image ? ' has-image' : ''}`}
       href={`${window.location.pathname}#/project/${p.slug}`}
       key={dir}
       aria-label={dir === 'prev' ? `Previous project: ${p.name}` : `Next project: ${p.name}`}
@@ -92,7 +89,7 @@ export default function ProjectPage({ slug, onClose }: ProjectPageProps): JSX.El
     >
       <div className="pcard-bg" />
       <div className="pcard-img-overlay" />
-      <ProjectShot slug={p.slug} name={p.name} />
+      <ProjectShot project={p} />
       <span className="p-nav-arrow" aria-hidden="true">
         <ArrowIcon direction={dir === 'prev' ? 'left' : 'up-right'} />
       </span>
@@ -122,62 +119,72 @@ export default function ProjectPage({ slug, onClose }: ProjectPageProps): JSX.El
         <span className="pp-count"><b>{project.id}</b> / {total}</span>
       </div>
 
-      <header className="pp-header">
-        <div className="pp-header-main">
-          <h1 className="pp-title">{project.name}</h1>
-          <p className="pp-intro">{project.description}</p>
-        </div>
+      <div className="pp-dossier">
+        <aside className="pp-rail">
+          <span className="pp-rail-index" aria-hidden="true">{project.id}</span>
 
-        <dl className="pp-facts">
-          <div className="pp-fact">
-            <dt>Client</dt>
-            <dd>{project.company}</dd>
-          </div>
-          <div className="pp-fact">
-            <dt>Year</dt>
-            <dd>{project.year}</dd>
-          </div>
-          <div className="pp-fact">
-            <dt>Discipline</dt>
-            <dd>{project.tags.join(' · ')}</dd>
-          </div>
-        </dl>
-      </header>
+          <dl className="pp-facts">
+            <div className="pp-fact">
+              <dt>Client</dt>
+              <dd>{project.company}</dd>
+            </div>
+            <div className="pp-fact">
+              <dt>Year</dt>
+              <dd>{project.year}</dd>
+            </div>
+            <div className="pp-fact">
+              <dt>Discipline</dt>
+              <dd>{project.tags.join(' · ')}</dd>
+            </div>
+          </dl>
 
-      <ProjectVisual project={project} />
-
-      <div className="pp-body">
-        <div className="pp-main">
-          <p className="s-label pp-block-label">About the project</p>
-          {project.overview.map((para, i) => (
-            <p key={i} className="pp-para">{para}</p>
-          ))}
-        </div>
-
-        <aside className="pp-side">
-          <div className="pp-side-block">
-            <p className="s-label pp-block-label">Links</p>
+          <div className="pp-rail-links">
             {links.length > 0 ? (
               links.map((l) => (
-                <a key={l.label} className="pp-link" href={l.url} target="_blank" rel="noopener noreferrer">
-                  <span>{l.label}</span>
+                <a key={l.label} className="pp-rail-link" href={l.url} target="_blank" rel="noopener noreferrer">
+                  <span>{l.label === 'Live Preview' ? 'Visit live site' : l.label}</span>
                   <ArrowIcon />
                 </a>
               ))
             ) : (
-              <span className="pp-private">Private — upon request</span>
+              <span className="pp-rail-link is-private">Private — upon request</span>
             )}
           </div>
+        </aside>
 
-          <div className="pp-side-block">
-            <p className="s-label pp-block-label">Built with</p>
-            <div className="pp-stack-tags">
-              {project.tags.map((t) => (
-                <span key={t} className="pp-pill">{t}</span>
-              ))}
+        <div className="pp-content">
+          <header className="pp-head">
+            <p className="s-label">{project.company}</p>
+            <h1 className="pp-title">{project.name}</h1>
+            <p className="pp-intro">{project.description}</p>
+          </header>
+
+          <div className="pp-cover">
+            <ProjectVisual project={project} />
+            <div className="pp-visual-meta" aria-hidden="true">
+              <span>Interface</span>
+              <span>{project.id} / {total}</span>
             </div>
           </div>
-        </aside>
+
+          <section className="pp-story">
+            <p className="s-label">About the project</p>
+            <div className="pp-story-body">
+              {project.overview.map((para, i) => (
+                <p key={i} className="pp-para">{para}</p>
+              ))}
+
+              <div className="pp-story-stack">
+                <p className="s-label pp-block-label">Built with</p>
+                <div className="pp-stack-tags">
+                  {project.tags.map((t) => (
+                    <span key={t} className="pp-pill">{t}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
       </div>
 
       <section className="pp-more">

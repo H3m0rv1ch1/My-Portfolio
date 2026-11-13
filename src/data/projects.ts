@@ -4,8 +4,9 @@ export interface ProjectLink {
   external: boolean;
 }
 
-export interface Project {
-  slug: string;
+/** Drop screenshots in `public/projects/` named after the project `slug`,
+    e.g. `public/projects/spookify-ai.png`, then set `image` on the project. */
+export interface Project {  slug: string;
   id: string;
   name: string;
   company: string;
@@ -13,6 +14,8 @@ export interface Project {
   tags: string[];
   description: string;
   gradient: string;
+  /** Optional screenshot, served from /public. Falls back to the gradient plate. */
+  image?: string;
   liveUrl: string;
   githubUrl: string;
   /** Case-study copy. Derived from existing project facts only — no invented claims. */
@@ -29,6 +32,7 @@ export const projects: Project[] = [
     tags: ['WordPress', 'Elementor Pro', 'Motion Design'],
     description: 'Futuristic digital HQ for advertising agency with immersive experience.',
     gradient: 'p-noor-ai',
+    image: './projects/noor-dubai-ai.png',
     liveUrl: 'https://noordubai.ai/',
     githubUrl: 'https://github.com/H3m0rv1ch1',
     overview: [
@@ -45,6 +49,7 @@ export const projects: Project[] = [
     tags: ['Next.js', 'React', 'TypeScript', 'Node.js'],
     description: 'Mission-critical ERP for fleet management & bookings.',
     gradient: 'p-billionaire',
+    image: './projects/billionaire-erp.jpeg',
     liveUrl: 'https://www.facebook.com/billionaire.for.rent/',
     githubUrl: 'https://github.com/H3m0rv1ch1',
     overview: [
@@ -61,6 +66,7 @@ export const projects: Project[] = [
     tags: ['React', 'Canvas API', 'JavaScript'],
     description: 'Client-side image processing tool for batch watermarking.',
     gradient: 'p-watermark',
+    image: './projects/watermarking-app.jpg',
     liveUrl: 'https://watermarking-app.pages.dev/',
     githubUrl: 'https://github.com/H3m0rv1ch1/Watermarking-App',
     overview: [
@@ -93,6 +99,7 @@ export const projects: Project[] = [
     tags: ['WordPress', 'Elementor', 'Web Design'],
     description: 'Interior design portfolio with elegant visual storytelling.',
     gradient: 'p-noor-interiors',
+    image: './projects/noor-interiors.jpeg',
     liveUrl: 'https://noordubai.net/',
     githubUrl: 'https://github.com/H3m0rv1ch1',
     overview: [
@@ -109,6 +116,7 @@ export const projects: Project[] = [
     tags: ['WordPress', 'E-commerce', 'WooCommerce'],
     description: 'Woodwork and carpentry showcase with product catalog.',
     gradient: 'p-noor-woods',
+    image: './projects/noor-woods.jpeg',
     liveUrl: 'https://noorwoods.com',
     githubUrl: 'https://github.com/H3m0rv1ch1',
     overview: [
@@ -125,6 +133,7 @@ export const projects: Project[] = [
     tags: ['React', 'TypeScript', 'AI', 'Tailwind CSS'],
     description: 'AI-powered Halloween costume generator.',
     gradient: 'p-spookify',
+    image: './projects/spookify-ai.png',
     liveUrl: 'https://spookify-ai-the-void.pages.dev/upload',
     githubUrl: 'https://github.com/H3m0rv1ch1/spookify-ai-The-void',
     overview: [
@@ -141,6 +150,7 @@ export const projects: Project[] = [
     tags: ['Tauri', 'React', 'TypeScript', 'Desktop'],
     description: 'Desktop app for team performance tracking.',
     gradient: 'p-enjaz',
+    image: './projects/enjaz.jpg',
     liveUrl: 'https://enjaz.pages.dev/#/dashboard',
     githubUrl: 'https://github.com/H3m0rv1ch1/Enjaz',
     overview: [
@@ -173,6 +183,7 @@ export const projects: Project[] = [
     tags: ['Next.js', 'PWA', 'React', 'Tailwind CSS'],
     description: 'Islamic web app with prayer times, Quran, AI assistant.',
     gradient: 'p-rafiq',
+    image: './projects/rafiq-al-muslim.png',
     liveUrl: 'https://rafiqalmuslim.com/',
     githubUrl: 'https://github.com/H3m0rv1ch1',
     overview: [
@@ -189,6 +200,7 @@ export const projects: Project[] = [
     tags: ['Next.js', 'React', 'E-commerce', 'Stripe', 'Prisma'],
     description: 'Modern e-commerce platform for medical apparel with seamless checkout.',
     gradient: 'p-doctors',
+    image: './projects/doctors-outfit.jpeg',
     liveUrl: 'https://doctorsoutfit.com',
     githubUrl: 'https://github.com/H3m0rv1ch1',
     overview: [

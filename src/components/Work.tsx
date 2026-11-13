@@ -87,7 +87,7 @@ const Work = memo(function Work(): JSX.Element {
           return (
             <article
               key={p.id}
-              className={`stack-card pcard ${p.gradient}`}
+              className={`stack-card pcard ${p.gradient}${p.image ? ' has-image' : ''}`}
               aria-labelledby={`proj-${p.id}`}
             >
               <div className="pcard-inner">
@@ -101,7 +101,7 @@ const Work = memo(function Work(): JSX.Element {
               >
                 <div className="pcard-bg" />
                 <div className="pcard-img-overlay" />
-                <ProjectShot slug={p.slug} name={p.name} />
+                <ProjectShot project={p} />
                 <span className="blob blob1" aria-hidden="true" />
                 <span className="blob blob2" aria-hidden="true" />
 
