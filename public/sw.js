@@ -1,12 +1,14 @@
 // Service Worker for Portfolio Performance Optimization
 // Network-first strategy: always shows the latest version,
 // cache is only a fallback for offline.
-const CACHE_NAME = 'portfolio-v3';
+const CACHE_NAME = 'portfolio-v4';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
-  '/herobg.png',
-  '/bgwhitehero.png',
+  '/herobg.webp',
+  '/herobg-mobile.webp',
+  '/bgwhitehero.webp',
+  '/bgwhitehero-mobile.webp',
   '/img.png',
   '/favicon.ico',
   '/manifest.json',

@@ -64,8 +64,9 @@
   <link rel="preload" href="/fonts/syne-var.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin />
   
-  <!-- Preload critical images for LCP improvement -->
-  <link rel="preload" as="image" href="/herobg.png" fetchpriority="high" />
+  <!-- Preload hero art: WebP, portrait crop on phones -->
+  <link rel="preload" as="image" href="/herobg.webp" media="(min-width: 901px)" fetchpriority="high" />
+  <link rel="preload" as="image" href="/herobg-mobile.webp" media="(max-width: 900px)" fetchpriority="high" />
   <link rel="preload" as="image" href="/img.png" fetchpriority="high" />
   
   <!-- Structured Data for SEO -->
